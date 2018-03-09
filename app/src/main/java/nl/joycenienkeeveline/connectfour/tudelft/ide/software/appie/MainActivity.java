@@ -8,9 +8,7 @@ import android.view.WindowManager;
 
 // extends Activity instead of AppCompatActivity to remove title bar
 public class MainActivity extends Activity {
-
-   // Test 1
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,5 +20,4 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
     }
-    //hoi 
 }
