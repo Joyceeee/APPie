@@ -5,5 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie.MainMenu">
+    <Button
+        android:id="@+id/other_screen_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="other_screen"
+        android:onClick="newGameButtonClicked"
+        />
+
 
 </android.support.constraint.ConstraintLayout>

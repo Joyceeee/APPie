@@ -7,11 +7,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 
 // extends Activity instead of AppCompatActivity to remove title bar 
 public class MainMenu extends Activity {
+
+    private Button otherscreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,17 +27,12 @@ public class MainMenu extends Activity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main_menu);
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.other_screen, menu);
-        return true;}
 
-    public void onClickSave(MenuItem item) {
+        otherscreen=(Button)findViewById(R.id.other_screen_button);
+    }
+
+    public void newGameButtonClicked(View view) {
         Intent intent = new Intent(this,
                 MainActivity.class);
-        startActivity(intent);
-    }
-
+        startActivity(intent);}
 }
