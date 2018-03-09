@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-// extends Activity instead of AppCompatActivity to remove title bar
+// extends Activity instead of AppCompatActivity to remove title bar 
 public class MainMenu extends Activity {
 
     @Override
