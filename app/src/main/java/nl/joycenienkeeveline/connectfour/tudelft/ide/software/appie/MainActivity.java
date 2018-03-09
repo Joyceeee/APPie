@@ -6,9 +6,6 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity {
 
 
-    lalalall hsjkfhskjdfjuyuyuiy sldfjlsdjflskd
-    heyhoilalalol
-            nog een keer jaja
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
