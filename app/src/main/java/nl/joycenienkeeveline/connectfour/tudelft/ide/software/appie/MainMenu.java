@@ -1,8 +1,12 @@
 package nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -20,4 +24,16 @@ public class MainMenu extends Activity {
 
         setContentView(R.layout.activity_main_menu);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.other_screen, menu);
+        return true;}
+
+    public void onClickSave(MenuItem item) {
+        Intent intent = new Intent(this,
+                MainActivity.class);
+        startActivity(intent);
+    }
+
 }
