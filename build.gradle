@@ -21,6 +21,7 @@ allprojects {
         mavenCentral() //gif
         google()
         jcenter()
+        maven { url "https://jitpack.io" } //voor mooie buttons https://github.com/varunest/SparkButton
     }
 }
 

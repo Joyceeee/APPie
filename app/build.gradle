@@ -25,5 +25,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.11' //gif
+
+    compile 'com.felipecsl:gifimageview:2.1.0'
+    compile 'commons-io:commons-io:2.4'
+    //voor loadscreen https://www.youtube.com/watch?v=Mas3Lnd3WtM
+
+    compile 'com.github.varunest:sparkbutton:1.0.5'
+    //voor mooie buttons https://github.com/varunest/SparkButton
+
 }
