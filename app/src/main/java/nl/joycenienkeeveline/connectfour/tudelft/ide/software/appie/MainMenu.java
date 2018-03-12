@@ -12,7 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-// extends Activity instead of AppCompatActivity to remove title bar 
+// extends Activity instead of AppCompatActivity to remove title bar.
 public class MainMenu extends Activity {
 
     private Button otherscreen;
