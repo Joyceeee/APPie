@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 /**
- * Created by evelinepientje on 09-03-18.hoi
+ * Created by evelinepientje on 09-03-18.
  */
 
 
@@ -19,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
-        finish(); 
+        finish();
     }
 }
 
