@@ -33,6 +33,6 @@ public class MainMenu extends Activity {
 
     public void newGameButtonClicked(View view) {
         Intent intent = new Intent(this,
-                MainActivity.class);
+                InstructionPageBeforePlay.class);
         startActivity(intent);}
 }
