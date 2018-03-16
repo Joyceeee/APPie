@@ -3,6 +3,7 @@ package nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Point;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,23 +19,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.varunest.sparkbutton.SparkButton;
+import com.varunest.sparkbutton.SparkEventListener;
 
 // extends Activity instead of AppCompatActivity to remove title bar.
 public class MainMenu extends Activity {
 
     private Button otherscreen;
+    private Button sparkButtonoverlay;
+    private SparkButton sparkButton;
+    private Handler mHandler = new Handler();
 
     //Initialise screen size
-    private int screenWidth;
-    private int screenHeight;
+    //private int screenWidth;
+    //private int screenHeight;
 
     //Position buttons
-    private SparkButton play;
-    private SparkButton ranking;
-    private SparkButton how_to_play;
-    private SparkButton settings;
+    //private SparkButton play;
+    //private SparkButton ranking;
+    //private SparkButton how_to_play;
+    //private SparkButton settings;
 
-    private ImageView titlebar;
+    //private ImageView titlebar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,45 +52,71 @@ public class MainMenu extends Activity {
 
         setContentView(R.layout.activity_main_menu);
 
-        otherscreen=(Button)findViewById(R.id.other_screen_button);
+
+        sparkButtonoverlay=(Button)findViewById(R.id.spark_button_overlay);
+        //sparkButton=(SparkButton)findViewById(R.id.spark_button);
 
         //Get screen size
-        WindowManager wm = getWindowManager();
-        Display disp = wm.getDefaultDisplay();
-        Point size = new Point();
-        disp.getSize(size);
+        //WindowManager wm = getWindowManager();
+        //Display disp = wm.getDefaultDisplay();
+        //Point size = new Point();
+        //disp.getSize(size);
 
-        screenWidth = size.x;
-        screenHeight = size.y;
+        //screenWidth = size.x;
+        //screenHeight = size.y;
 
         //Finding button images
-        play = (SparkButton) findViewById(R.id.spark_button);
-        settings = (SparkButton) findViewById(R.id.spark_button4);
-        how_to_play = (SparkButton) findViewById(R.id.spark_button3);
-        ranking = (SparkButton) findViewById(R.id.spark_button2);
-        titlebar = (ImageView)findViewById(R.id.titelbar);
+        //play = (SparkButton) findViewById(R.id.spark_button);
+        //settings = (SparkButton) findViewById(R.id.spark_button4);
+        //how_to_play = (SparkButton) findViewById(R.id.spark_button3);
+        //ranking = (SparkButton) findViewById(R.id.spark_button2);
+        //titlebar = (ImageView)findViewById(R.id.titelbar);
 
-        play.setY(1280);
-        ranking.setY((screenHeight-50)/8*2-165);
-        how_to_play.setY((screenHeight-50)/8*3-165);
-        settings.setY((screenHeight-50)/8*4-165);
+        //play.setY(1280);
+        //ranking.setY((screenHeight-50)/8*2-165);
+        //how_to_play.setY((screenHeight-50)/8*3-165);
+        //settings.setY((screenHeight-50)/8*4-165);
+
 
 
     }
 
-    public void newGameButtonClicked(View view) {
-        Intent intent = new Intent(this,
-                InstructionPageBeforePlay.class);
-        //startActivity(intent);
-        System.out.print("screenHeight");
-        System.out.println(screenHeight);
-        System.out.print("play");
-        System.out.println(play.getY());
-        System.out.print("gety");
-        System.out.println(((screenHeight/4)-165));
+
+    public void playClick(View view) {
+        long t1 = System.currentTimeMillis();
+        while (true) {
+            long t2 = System.currentTimeMillis();
+            if (t2 - t1 > 1500) break;
         }
 
-}
+        Intent intent = new Intent(this,
+                InstructionPageBeforePlay.class);
+        startActivity(intent);
+
+
+    }
+
+    //sparkButton.setEventListener(new SparkEventListener(){
+        //@Override
+        //void onEvent(ImageView button, boolean buttonState) {
+         //   if (buttonState) {
+                // Button is active
+         //   } else {
+          //      // Button is inactive3
+          //  }
+       // }
+    //});
+
+
+        //System.out.print("screenHeight");
+        //System.out.println(screenHeight);
+        //System.out.print("play");
+        //System.out.println(play.getY());
+        //System.out.print("gety");
+        //System.out.println(((screenHeight/4)-165));
+        }
+
+
 
 
 

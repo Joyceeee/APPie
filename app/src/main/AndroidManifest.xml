@@ -17,13 +17,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainMenu" />
+        <activity android:name=".InstructionPageBeforePlay" />
         <activity android:name=".MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".InstructionPageBeforePlay"></activity>
+
     </application>
 
 </manifest>

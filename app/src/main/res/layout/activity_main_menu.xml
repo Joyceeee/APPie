@@ -6,13 +6,6 @@
     android:layout_height="match_parent"
     tools:context="nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie.MainMenu">
 
-    <Button
-        android:id="@+id/other_screen_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="newGameButtonClicked"
-        android:text="other_screen" />
-
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
@@ -20,7 +13,7 @@
         android:contentDescription="@string/todo"
         android:gravity="center_vertical"
         android:scaleType="centerCrop"
-        android:src="@drawable/mooigrijsisnietlelijk" />
+        android:src="@drawable/backgroundmenu" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,14 +25,13 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/titelbar"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/todo"
                 android:gravity="center_vertical"
                 android:scaleType="centerCrop"
-                android:src="@drawable/mooirozeisnietlelijk" />
+                android:src="@drawable/header" />
 
             <ImageView
                 android:layout_width="match_parent"
@@ -47,22 +39,8 @@
                 android:layout_marginTop="5dp"
                 android:contentDescription="@string/todo"
                 android:gravity="center_horizontal"
-                android:src="@drawable/appietekst" />
-        </FrameLayout>
+                android:src="@drawable/appie" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <com.varunest.sparkbutton.SparkButton
-                android:id="@+id/spark_button"
-                android:layout_width="200dp"
-                android:layout_height="110dp"
-                android:layout_gravity="center_horizontal"
-                app:sparkbutton_activeImage="@drawable/playinactive"
-                app:sparkbutton_iconSize="60dp"
-                app:sparkbutton_inActiveImage="@drawable/playactive"
-                app:sparkbutton_primaryColor="@color/colorPrimary"
-                app:sparkbutton_secondaryColor="@color/colorGREEEN" />
         </FrameLayout>
     </LinearLayout>
 
@@ -70,44 +48,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-        <com.varunest.sparkbutton.SparkButton
-            android:id="@+id/spark_button2"
-            android:layout_width="200dp"
-            android:layout_height="110dp"
-            android:layout_centerHorizontal="true"
-
-            app:sparkbutton_activeImage="@drawable/playinactive"
-            app:sparkbutton_iconSize="60dp"
-            app:sparkbutton_inActiveImage="@drawable/playactive"
-            app:sparkbutton_primaryColor="@color/colorPrimary"
-            app:sparkbutton_secondaryColor="@color/colorBLUEEE" />
+    <Button
+        android:id="@+id/spark_button_overlay"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:alpha="0"
+        android:clickable="true"
+        android:onClick="playClick"
+        android:visibility="visible" />
 
     <com.varunest.sparkbutton.SparkButton
-            android:id="@+id/spark_button4"
-            android:layout_width="200dp"
-            android:layout_height="110dp"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
-            app:sparkbutton_activeImage="@drawable/playinactive"
-            app:sparkbutton_iconSize="60dp"
-            app:sparkbutton_inActiveImage="@drawable/playactive"
-            app:sparkbutton_primaryColor="@color/colorPrimary"
-            app:sparkbutton_secondaryColor="@color/colorSecondary" >
+        android:id="@+id/spark_button"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        app:sparkbutton_activeImage="@drawable/playinactive"
+        app:sparkbutton_iconSize="80dp"
+        app:sparkbutton_inActiveImage="@drawable/playactive"
+        app:sparkbutton_primaryColor="@color/colorPrimary"
+        app:sparkbutton_secondaryColor="@color/colorSecondary">
 
-        <com.varunest.sparkbutton.SparkButton
-            android:id="@+id/spark_button3"
-            android:layout_width="200dp"
-            android:layout_height="110dp"
-            android:layout_alignStart="@+id/spark_button2"
-            android:layout_below="@+id/spark_button2"
-            app:sparkbutton_activeImage="@drawable/playinactive"
-            app:sparkbutton_iconSize="60dp"
-            app:sparkbutton_inActiveImage="@drawable/playactive"
-            app:sparkbutton_primaryColor="@color/colorPrimary"
-            app:sparkbutton_secondaryColor="@color/colorSecondary" />
     </com.varunest.sparkbutton.SparkButton>
+
+
+    <com.varunest.sparkbutton.SparkButton
+        android:id="@+id/spark_button2"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_below="@id/spark_button"
+        android:layout_centerHorizontal="true"
+        app:sparkbutton_activeImage="@drawable/rankinginactive"
+        app:sparkbutton_iconSize="100dp"
+        app:sparkbutton_inActiveImage="@drawable/rankingactive"
+        app:sparkbutton_primaryColor="@color/colorPrimary"
+        app:sparkbutton_secondaryColor="@color/colorSecondary" />
+
+    <com.varunest.sparkbutton.SparkButton
+        android:id="@+id/spark_button3"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_below="@id/spark_button2"
+        android:layout_centerHorizontal="true"
+        app:sparkbutton_activeImage="@drawable/howtoinactive"
+        app:sparkbutton_iconSize="100dp"
+        app:sparkbutton_inActiveImage="@drawable/howtoactive"
+        app:sparkbutton_primaryColor="@color/colorPrimary"
+        app:sparkbutton_secondaryColor="@color/colorSecondary" />
+
+    <com.varunest.sparkbutton.SparkButton
+        android:id="@+id/spark_button4"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        app:sparkbutton_activeImage="@drawable/settinginactive"
+        app:sparkbutton_iconSize="100dp"
+        app:sparkbutton_inActiveImage="@drawable/settingsactive"
+        app:sparkbutton_primaryColor="@color/colorPrimary"
+        app:sparkbutton_secondaryColor="@color/colorSecondary" />
         <!--https://www.youtube.com/watch?v=pRTS_BQDM6Y
             https://github.com/varunest/SparkButton-->
 </RelativeLayout>
