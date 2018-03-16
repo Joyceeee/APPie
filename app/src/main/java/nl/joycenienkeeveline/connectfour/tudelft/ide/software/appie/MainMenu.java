@@ -7,11 +7,13 @@ import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.*;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -30,16 +32,19 @@ public class MainMenu extends Activity {
     private Handler mHandler = new Handler();
 
     //Initialise screen size
-    //private int screenWidth;
-    //private int screenHeight;
+    private int screenWidth;
+    private int screenHeight;
 
-    //Position buttons
-    //private SparkButton play;
-    //private SparkButton ranking;
-    //private SparkButton how_to_play;
-    //private SparkButton settings;
+    //Position buttons and titlebar
+    private SparkButton play;
+    private SparkButton ranking;
+    private SparkButton how_to_play;
+    private SparkButton settings;
+    private ImageView titlebar;
 
-    //private ImageView titlebar;
+    //Height UI items
+    public int play_height;
+    private int titlebar_height;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,32 +57,47 @@ public class MainMenu extends Activity {
 
         setContentView(R.layout.activity_main_menu);
 
-
         sparkButtonoverlay=(Button)findViewById(R.id.spark_button_overlay);
         //sparkButton=(SparkButton)findViewById(R.id.spark_button);
 
-        //Get screen size
-        //WindowManager wm = getWindowManager();
-        //Display disp = wm.getDefaultDisplay();
-        //Point size = new Point();
-        //disp.getSize(size);
-
-        //screenWidth = size.x;
-        //screenHeight = size.y;
-
         //Finding button images
-        //play = (SparkButton) findViewById(R.id.spark_button);
-        //settings = (SparkButton) findViewById(R.id.spark_button4);
-        //how_to_play = (SparkButton) findViewById(R.id.spark_button3);
-        //ranking = (SparkButton) findViewById(R.id.spark_button2);
-        //titlebar = (ImageView)findViewById(R.id.titelbar);
+        play = (SparkButton) findViewById(R.id.spark_button);
+        settings = (SparkButton) findViewById(R.id.spark_button4);
+        how_to_play = (SparkButton) findViewById(R.id.spark_button3);
+        ranking = (SparkButton) findViewById(R.id.spark_button2);
 
-        //play.setY(1280);
-        //ranking.setY((screenHeight-50)/8*2-165);
-        //how_to_play.setY((screenHeight-50)/8*3-165);
-        //settings.setY((screenHeight-50)/8*4-165);
+        //Get screen size
+        //Source: see MainActivity
+        WindowManager wm = getWindowManager();
+        Display disp = wm.getDefaultDisplay();
+        Point size = new Point();
+        disp.getSize(size);
 
+        screenWidth = size.x;
+        screenHeight = size.y;
 
+        //Getting height for UI elements
+        //Source: https://stackoverflow.com/questions/3591784/views-getwidth-and-getheight-returns-0
+        final View heightTitlebar = (ImageView) findViewById(R.id.titelbar);
+        heightTitlebar.post(new Runnable() {
+            @Override
+            public void run() {
+                titlebar_height = heightTitlebar.getHeight(); //height is ready
+            }
+        });
+        final View heightPlay = (SparkButton) findViewById(R.id.spark_button);
+        heightPlay.post(new Runnable() {
+            @Override
+            public void run() {
+                play_height = heightPlay.getHeight(); //height is ready
+
+                //Set new y positions buttons with an equal distribution over the height of the device
+                play.setY((screenHeight-titlebar_height) / 5 - (play_height / 2));
+                ranking.setY((screenHeight - titlebar_height) / 5 * 2 - (play_height / 2));
+                how_to_play.setY((screenHeight - titlebar_height) / 5 * 3 - (play_height / 2));
+                settings.setY((screenHeight - titlebar_height)/5*4 - (play_height / 2));
+            }
+        });
 
     }
 
@@ -92,31 +112,19 @@ public class MainMenu extends Activity {
         Intent intent = new Intent(this,
                 InstructionPageBeforePlay.class);
         startActivity(intent);
-
-
     }
 
     //sparkButton.setEventListener(new SparkEventListener(){
-        //@Override
-        //void onEvent(ImageView button, boolean buttonState) {
-         //   if (buttonState) {
-                // Button is active
-         //   } else {
-          //      // Button is inactive3
-          //  }
-       // }
+    //@Override
+    //void onEvent(ImageView button, boolean buttonState) {
+    //   if (buttonState) {
+    // Button is active
+    //   } else {
+    //      // Button is inactive3
+    //  }
+    // }
     //});
-
-
-        //System.out.print("screenHeight");
-        //System.out.println(screenHeight);
-        //System.out.print("play");
-        //System.out.println(play.getY());
-        //System.out.print("gety");
-        //System.out.println(((screenHeight/4)-165));
-        }
-
-
+}
 
 
 

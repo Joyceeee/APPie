@@ -17,6 +17,7 @@ public class OnControlListenerImpl implements SensorControlListener.OnControlLis
     private float sensorX;
     private long time=0;
     private boolean moving=false;
+    private int screenHeight;
 
     private MainActivity mainActivity;
     public OnControlListenerImpl(MainActivity mainActivity) {
@@ -30,16 +31,19 @@ public class OnControlListenerImpl implements SensorControlListener.OnControlLis
             System.out.println("Rollin' babeee jaaaa");
             sensorX=sensorX-x*ROLLING_SPEED;
             ImageView bitmoji1=(ImageView)mainActivity.findViewById(R.id.bitmoji1);
+            ImageView umbrellacovering=(ImageView)mainActivity.findViewById(R.id.bitmojiumbrella1);
 
             //Set boundaries field in which bitmoji must move
             if (sensorX<(-bitmoji1.getWidth()/2)) sensorX=-bitmoji1.getWidth()/2;
             if (sensorX+bitmoji1.getWidth()>mainActivity.screenWidth+(bitmoji1.getWidth()/2))
                 sensorX=mainActivity.screenWidth-(bitmoji1.getWidth()/2);
-            System.out.println(bitmoji1.getX());
-            System.out.println(sensorX);
 
+            screenHeight = mainActivity.screenHeight;
             //Set new position bitmoji
             bitmoji1.setX(sensorX);
+
+            //Make sure umbrella moves along on the right place
+            umbrellacovering.setX(sensorX+bitmoji1.getWidth()/4);
             time=System.currentTimeMillis(); // reset the time
             moving=true;
         }
