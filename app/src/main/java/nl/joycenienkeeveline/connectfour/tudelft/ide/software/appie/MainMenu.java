@@ -113,7 +113,7 @@ public class MainMenu extends Activity {
 
         if (view==sparkButtonoverlay){
         Intent intent = new Intent(this,
-                InstructionPageBeforePlay.class);
+                ChooseBitmoji.class);
         startActivity(intent);}
         else{Intent intent = new Intent(this,
                 SettingsPage.class);
@@ -125,6 +125,7 @@ public class MainMenu extends Activity {
     //Source: https://stackoverflow.com/questions/6014028/closing-application-with-exit-button
     public void onBackPressed() {
         finish();
+        System.exit(0);
     }
 
     //sparkButton.setEventListener(new SparkEventListener(){

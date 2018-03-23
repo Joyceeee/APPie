@@ -43,7 +43,7 @@ public class OnControlListenerImpl implements SensorControlListener.OnControlLis
             bitmoji1.setX(sensorX);
 
             //Make sure umbrella moves along on the right place
-            umbrellacovering.setX(sensorX+bitmoji1.getWidth()/4);
+            umbrellacovering.setX(sensorX+bitmoji1.getWidth()/5);
             time=System.currentTimeMillis(); // reset the time
             moving=true;
         }

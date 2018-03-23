@@ -32,7 +32,8 @@
 
         <activity android:name=".SettingsPage" />
         <activity android:name=".HowToPlayPage" />
-        <activity android:name=".RankingPage"></activity>
+        <activity android:name=".RankingPage" />
+        <activity android:name=".ChooseBitmoji"></activity>
     </application>
 
 </manifest>

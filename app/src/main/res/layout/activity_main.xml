@@ -106,7 +106,7 @@
 
             <ImageView
                 android:id="@+id/bitmoji1"
-                android:layout_width="140dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:adjustViewBounds="true"
@@ -116,12 +116,12 @@
 
             <ImageView
             android:id="@+id/bitmojiumbrella1"
-            android:layout_width="160dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:adjustViewBounds="true"
             android:contentDescription="@string/todo"
-            android:paddingBottom="10dp"
+            android:paddingBottom="9dp"
             android:scaleType="fitXY"
             android:src="@drawable/umbrellacovering"
             android:visibility="invisible" />

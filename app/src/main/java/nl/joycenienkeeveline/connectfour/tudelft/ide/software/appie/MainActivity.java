@@ -1,6 +1,16 @@
 package nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie;
 
 /*DOEN:
+ERGENS AANGEVEN OF HIER OF IN VERSLAG WAT ER ALLEMAAL INSTELBAAR IS:
+COLLISION BEREIK
+SNELHEID OBJECTS
+INTRO OBJECTS
+GROOTTE OBJECTS
+TIJDVERSNELLING
+PUNTEN OPTEL/AFTREK
+ERGENS VERMELDEN DAT SCHERM NIET UITGAAT TIJDENS GAME
+
+
 FIXEN ctrl F FIX
 Fixen gif
 Fizen afmetingen collision detection
@@ -96,7 +106,8 @@ public class MainActivity extends Activity {
     Handler customHandler = new Handler();
 
     //Making game go faster with speedFactor:
-    private int speedFactor = 1000;
+    //Make speedfactor larger to decrease the acceleration
+    private int speedFactor = 3000;
 
     //Initialising score and elements needed for visuals
     private int score = 1000;
@@ -245,7 +256,7 @@ public class MainActivity extends Activity {
         //waitFunctionCake2();
         waitFunction(9500,2);
         waitFunction(17730,3);
-        waitFunction(21450,4);
+        waitFunction(25450,4);
     }
 
     //A delay function introduced in the game
@@ -409,14 +420,14 @@ public class MainActivity extends Activity {
     public void hitCheck(){
         if(viewsOverlap(cake1,bitmoji1)){
             cake1y=screenHeight;
-            Score(10);
+            Score(20);
             //Play sound when collision
             if(soundValue==1){sound.playCakeSound();}
         }
 
         if(viewsOverlap(cake2,bitmoji1)){
             cake2y=screenHeight;
-            Score(20);
+            Score(30);
             if(soundValue==1){sound.playCakeSound();}
         }
 
@@ -434,7 +445,7 @@ public class MainActivity extends Activity {
 
         if(viewsOverlap(sponge,bitmoji1)){
             spongey=screenHeight;
-            Score(-100);
+            Score(-150);
             if(soundValue==1){sound.playSpongeSound();}
             System.out.println("GERAAKT Spons");
         }
@@ -459,9 +470,9 @@ public class MainActivity extends Activity {
        //Check whether picture is umbrella (needs 2 rectangles because of dimensions)
        if(v1==umbrella){
            //Rectangle sheet
-           v1_rect = new Rect(v1_coords[0]+(v1_w/10), v1_coords[1]+(v1_h/10)+(v1_h/5), v1_coords[0] + v1_w-(v1_w/10), v1_coords[1] + v1_h-(v1_h/10));
+           v1_rect = new Rect(v1_coords[0]+(v1_w/10), v1_coords[1]+(v1_h/10), v1_coords[0] + v1_w-(v1_w/10), v1_coords[1] +(v1_h/2)-(v1_h/10));
            //Rectangle handle
-           v4_rect = new Rect(v1_coords[0]+(v1_w/10)+(v1_w/3), v1_coords[1]+(v1_h/10), v1_coords[0] + v1_w-(v1_w/10)-(v1_w/3), v1_coords[1] + v1_h-(v1_h/10)-(v1_h/5*4));
+           v4_rect = new Rect(v1_coords[0]+(v1_w/10)+(v1_w/3), v1_coords[1]+(v1_h/10)+(v1_h/2), v1_coords[0] + v1_w-(v1_w/10)-(v1_w/3), v1_coords[1] + v1_h);
        }
        else{
            v1_rect = new Rect(v1_coords[0]+(v1_w/10), v1_coords[1]+(v1_h/10), v1_coords[0] + v1_w-(v1_w/10), v1_coords[1] + v1_h-(v1_h/10));
@@ -475,9 +486,9 @@ public class MainActivity extends Activity {
         int v2_h = v2.getHeight();
        //Separating the bitmoji into multiple rectangles for the head and the body by adjusting the boundaries
         //Rectangle body
-        Rect v2_rect = new Rect(v2_coords[0], v2_coords[1]+(v2_h/2), v2_coords[0] + v2_w, v2_coords[1] + v2_h);
+        Rect v2_rect = new Rect(v2_coords[0], v2_coords[1]+(v2_h/7*6), v2_coords[0] + v2_w, v2_coords[1] + v2_h);
         //Rectangle head
-        Rect v3_rect = new Rect(v2_coords[0]+(v2_w/3), v2_coords[1], v2_coords[0] + v2_w-(v2_w/3), v2_coords[1] + v2_h-(v2_h/2));
+        Rect v3_rect = new Rect(v2_coords[0]+(v2_w/3), v2_coords[1], v2_coords[0] + v2_w-(v2_w/3), v2_coords[1] + v2_h-(v2_h/7));
 
         //Check whether collision
         if ((v1_rect.intersect(v2_rect) || v1_rect.contains(v2_rect) || v2_rect.contains(v1_rect))
@@ -512,9 +523,9 @@ public class MainActivity extends Activity {
         //Check whether picture is umbrella (needs 2 rectangles because of dimensions)
         if(v1==umbrella){
             //Rectangle sheet
-            v1_rect = new Rect(v1_coords[0]+(v1_w/10), v1_coords[1]+(v1_h/10)+(v1_h/5), v1_coords[0] + v1_w-(v1_w/10), v1_coords[1] + v1_h-(v1_h/10));
+            v1_rect = new Rect(v1_coords[0]+(v1_w/10), v1_coords[1]+(v1_h/10), v1_coords[0] + v1_w-(v1_w/10), v1_coords[1] +(v1_h/2)-(v1_h/10));
             //Rectangle handle
-            v4_rect = new Rect(v1_coords[0]+(v1_w/10)+(v1_w/3), v1_coords[1]+(v1_h/10), v1_coords[0] + v1_w-(v1_w/10)-(v1_w/3), v1_coords[1] + v1_h-(v1_h/10)-(v1_h/5*4));
+            v4_rect = new Rect(v1_coords[0]+(v1_w/10)+(v1_w/3), v1_coords[1]+(v1_h/10)+(v1_h/2), v1_coords[0] + v1_w-(v1_w/10)-(v1_w/3), v1_coords[1] + v1_h);
         }
         else{
             v1_rect = new Rect(v1_coords[0]+(v1_w/10), v1_coords[1]+(v1_h/10), v1_coords[0] + v1_w-(v1_w/10), v1_coords[1] + v1_h-(v1_h/10));
@@ -528,9 +539,9 @@ public class MainActivity extends Activity {
         int v2_h = umbrellacovering.getHeight();
         //Separating the umbrella into multiple rectangles as done already above
         //Rectangle sheet
-        Rect v2_rect = new Rect(v2_coords[0]+(v2_w/10), v2_coords[1]+(v2_h/10)+(v2_h/5), v2_coords[0] + v2_w-(v2_w/10), v2_coords[1] + v2_h-(v2_h/10));
+        Rect v2_rect = new Rect(v2_coords[0]+(v2_w/10), v2_coords[1]+(v2_h/10), v2_coords[0] + v2_w-(v2_w/10), v2_coords[1] + v2_h-(v2_h/10)+(v2_h/2));
         //Rectangle handle
-        Rect v3_rect = new Rect(v2_coords[0]+(v2_w/10)+(v2_w/3), v2_coords[1]+(v2_h/10), v2_coords[0] + v2_w-(v2_w/10)-(v2_w/3), v2_coords[1] + v2_h-(v2_h/10)-(v2_h/5*4));
+        Rect v3_rect = new Rect(v2_coords[0]+(v2_w/10)+(v2_w/3), v2_coords[1]+(v2_h/10)+(v2_h/2), v2_coords[0] + v2_w-(v2_w/10)-(v2_w/3), v2_coords[1] + v2_h);
 
         //Check whether collision
         if ((v1_rect.intersect(v2_rect) || v1_rect.contains(v2_rect) || v2_rect.contains(v1_rect))
@@ -557,7 +568,7 @@ public class MainActivity extends Activity {
             //Let cake 1 fall
             //Set speed
             //Including speedfactor to increase speed falling objects
-            cake1y +=(12*speedFactor)/1000;
+            cake1y +=(10*speedFactor)/3000;
             if (cake1y>screenHeight-150){
                 //Set interval
                 cake1y = -screenHeight+1700;
@@ -582,7 +593,7 @@ public class MainActivity extends Activity {
             handlerFallingObjects2.postDelayed(this, 5);
             //Let cake 2 fall
             //Set speed
-            cake2y +=(8*speedFactor)/1000;
+            cake2y +=(9*speedFactor)/3000;
             if (cake2y>screenHeight-150){
                 //Set interval
                 cake2y = -screenHeight+600;
@@ -604,7 +615,7 @@ public class MainActivity extends Activity {
             handlerFallingObjects3.postDelayed(this, 5);
             //Let cake 1 fall
             //Set speed
-            umbrellay +=(16*speedFactor)/1000;
+            umbrellay +=(12*speedFactor)/3000;
             if (umbrellay>screenHeight-150){
                 //Set interval
                 umbrellay = -screenHeight-550;
@@ -626,7 +637,7 @@ public class MainActivity extends Activity {
             handlerFallingObjects4.postDelayed(this, 5);
             //Let sponge fall
             //Set speed
-            spongey +=(18*speedFactor)/1000;
+            spongey +=(13*speedFactor)/3000;
             if (spongey>screenHeight-150){
                 //Set interval
                 spongey = -screenHeight;
@@ -671,7 +682,7 @@ public class MainActivity extends Activity {
 
             }
             else{
-                score-=10;
+                score-=20;
             }
             scoreVisual();
         }
