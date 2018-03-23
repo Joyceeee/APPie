@@ -139,6 +139,23 @@ public class MainMenu extends Activity {
     // }
     //});
 }
+      //  @Override
+        //void onEvent(ImageView button, boolean buttonState) {
+          //  if (buttonState) {
+ //
+   //         } else {
+     //           Intent intent = new Intent(this,
+       //                 InstructionPageBeforePlay.class);
+         //       startActivity(intent);
+           // }
+       // }
+   // };
+
+
+
+
+
+
 
 
 
