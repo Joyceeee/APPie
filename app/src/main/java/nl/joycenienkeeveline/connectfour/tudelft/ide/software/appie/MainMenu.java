@@ -28,6 +28,7 @@ public class MainMenu extends Activity {
 
     private Button otherscreen;
     private Button sparkButtonoverlay;
+    private Button sparkButtonoverlay2;
     private SparkButton sparkButton;
     private Handler mHandler = new Handler();
 
@@ -58,6 +59,7 @@ public class MainMenu extends Activity {
         setContentView(R.layout.activity_main_menu);
 
         sparkButtonoverlay=(Button)findViewById(R.id.spark_button_overlay);
+        sparkButtonoverlay2=(Button)findViewById(R.id.spark_button_overlay2);
         //sparkButton=(SparkButton)findViewById(R.id.spark_button);
 
         //Finding button images
@@ -109,9 +111,20 @@ public class MainMenu extends Activity {
             if (t2 - t1 > 1500) break;
         }
 
+        if (view==sparkButtonoverlay){
         Intent intent = new Intent(this,
                 InstructionPageBeforePlay.class);
-        startActivity(intent);
+        startActivity(intent);}
+        else{Intent intent = new Intent(this,
+                SettingsPage.class);
+            startActivity(intent);}
+    }
+
+    //Let app close when back button is pressed
+    //Source: https://stackoverflow.com/questions/5312334/how-to-handle-back-button-in-activity
+    //Source: https://stackoverflow.com/questions/6014028/closing-application-with-exit-button
+    public void onBackPressed() {
+        finish();
     }
 
     //sparkButton.setEventListener(new SparkEventListener(){

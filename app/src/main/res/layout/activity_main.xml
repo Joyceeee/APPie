@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:context="nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie.MainActivity">
 
+    <!--Make sure during game that the screen will not sleep by
+    implementing keepScreenOn
+    Source: https://stackoverflow.com/questions/13209518/disable-sleep-on-certain-activity -->
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
@@ -13,7 +16,8 @@
         android:contentDescription="@string/todo"
         android:gravity="center_vertical"
         android:scaleType="centerCrop"
-        android:src="@drawable/mooigrijsisnietlelijk" />
+        android:src="@drawable/mooigrijsisnietlelijk"
+        android:keepScreenOn="true"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -111,16 +115,47 @@
                 android:src="@drawable/bitmoji" />
 
             <ImageView
-                android:id="@+id/bitmojiumbrella1"
-                android:layout_width="160dp"
+            android:id="@+id/bitmojiumbrella1"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/todo"
+            android:paddingBottom="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/umbrellacovering"
+            android:visibility="invisible" />
+
+            <!--
+            DELETE
+            <TextView
+                android:id="@+id/scoreLabel"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/todo"
-                android:paddingBottom="10dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/umbrellacovering"
-                android:visibility="visible" />
+                android:layout_gravity="left|center_vertical|end"
+                android:layout_marginTop="130dp"
+                android:text="0000"
+                android:textColor="@color/colortimer"
+                android:textSize="60sp" />
+                -->
+
+            <!--Making score bar with waves
+            Source: https://www.youtube.com/watch?v=7d-IWhjxXIA-->
+            <me.itangqi.waveloadingview.WaveLoadingView
+                android:id="@+id/waveLoadingView"
+                android:layout_width="20dp"
+                android:layout_height="400dp"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="10dp"
+                app:wlv_borderColor="@color/colorAccent"
+                app:wlv_borderWidth="3dp"
+                app:wlv_round_rectangle="true"
+
+                app:wlv_shapeType="rectangle"
+                app:wlv_triangle_direction="north"
+                app:wlv_waveAmplitude="3"
+                app:wlv_waveColor="@color/colorScoreBar"
+                app:wlv_wave_background_Color="@color/colorScoreBarBackground" />
 
             <com.felipecsl.gifimageview.library.GifImageView
                 android:id="@+id/gifImageViewGame"

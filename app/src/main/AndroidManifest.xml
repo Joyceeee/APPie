@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie">
 
+    <!--
+    Give app permission to vibrate
+    Source: https://stackoverflow.com/questions/13950338/how-to-make-an-android-device-vibrate
+    -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,7 +30,9 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-
+        <activity android:name=".SettingsPage" />
+        <activity android:name=".HowToPlayPage" />
+        <activity android:name=".RankingPage"></activity>
     </application>
 
 </manifest>
