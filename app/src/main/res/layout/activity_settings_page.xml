@@ -63,12 +63,44 @@
                 android:src="@drawable/soundicon" />
 
             <ImageView
+                android:id="@+id/advancedtext"
                 android:layout_width="wrap_content"
                 android:layout_height="17dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="195dp"
                 android:adjustViewBounds="true"
-                android:src="@drawable/advancedtext" />
+                android:src="@drawable/advancedtext"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/beginnertext"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="195dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/beginnertext"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/intermediatetext"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="195dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/intermediatetext"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/experttext"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="195dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/experttext"
+                android:visibility="invisible" />
 
             <ImageView
                 android:id="@+id/soundoff"

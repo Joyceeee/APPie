@@ -69,9 +69,8 @@ public class HowToPlayPage extends Activity {
     }
 
     public void howtoNextPage7(View view) {
-        Intent intent = new Intent(this,
-                MainMenu.class);
-        startActivity(intent);
+        HowToPlayPage.this.startActivity(new Intent(HowToPlayPage.this, MainMenu.class));
+        HowToPlayPage.this.finish();
     }
 
 

@@ -28,6 +28,10 @@ public class SettingsPage extends Activity {
     private ImageView middle1;
     private ImageView middle2;
     private ImageView right;
+    private ImageView advancedtext;
+    private ImageView intermediatetext;
+    private ImageView beginnertext;
+    private ImageView experttext;
 
     //Initialise values for sound that can be stored with SharedPreferences
     private int soundValue = 1;
@@ -85,6 +89,10 @@ public class SettingsPage extends Activity {
         middle1 = (ImageView)findViewById(R.id.middleselectedlevel1);
         middle2 = (ImageView)findViewById(R.id.middleselectedlevel2);
         right = (ImageView)findViewById(R.id.rightselectedlevel);
+        advancedtext = (ImageView)findViewById(R.id.advancedtext);
+        beginnertext = (ImageView)findViewById(R.id.beginnertext);
+        intermediatetext = (ImageView)findViewById(R.id.intermediatetext);
+        experttext= (ImageView)findViewById(R.id.experttext);
 
         //Make sure UI elements have the right visibility based on shared preferences
         if (soundValue==1){visibilityImagesSoundON();}
@@ -100,24 +108,40 @@ public class SettingsPage extends Activity {
         middle1.setVisibility(View.INVISIBLE);
         middle2.setVisibility(View.INVISIBLE);
         right.setVisibility(View.INVISIBLE);
+        beginnertext.setVisibility(View.VISIBLE);
+        intermediatetext.setVisibility(View.INVISIBLE);
+        advancedtext.setVisibility(View.INVISIBLE);
+        experttext.setVisibility(View.INVISIBLE);
     }
 
     public void visibilityMiddle1(){
         middle1.setVisibility(View.VISIBLE);
         middle2.setVisibility(View.INVISIBLE);
         right.setVisibility(View.INVISIBLE);
+        beginnertext.setVisibility(View.INVISIBLE);
+        intermediatetext.setVisibility(View.VISIBLE);
+        advancedtext.setVisibility(View.INVISIBLE);
+        experttext.setVisibility(View.INVISIBLE);
     }
 
     public void visibilityMiddle2(){
         middle1.setVisibility(View.VISIBLE);
         middle2.setVisibility(View.VISIBLE);
         right.setVisibility(View.INVISIBLE);
+        beginnertext.setVisibility(View.INVISIBLE);
+        intermediatetext.setVisibility(View.INVISIBLE);
+        advancedtext.setVisibility(View.VISIBLE);
+        experttext.setVisibility(View.INVISIBLE);
     }
 
     public void visibilityRight(){
         middle1.setVisibility(View.VISIBLE);
         middle2.setVisibility(View.VISIBLE);
         right.setVisibility(View.VISIBLE);
+        beginnertext.setVisibility(View.INVISIBLE);
+        intermediatetext.setVisibility(View.INVISIBLE);
+        advancedtext.setVisibility(View.INVISIBLE);
+        experttext.setVisibility(View.VISIBLE);
     }
 
     public void visibilityImagesSoundON(){

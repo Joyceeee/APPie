@@ -28,8 +28,6 @@
         </activity>
         <activity android:name=".MainMenu"
             android:screenOrientation="portrait"/>
-        <activity android:name=".InstructionPageBeforePlay"
-            android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait"/>
 

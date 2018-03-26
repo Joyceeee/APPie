@@ -55,7 +55,7 @@ public class ChooseBitmoji extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_instruction_page_before_play);
+        setContentView(R.layout.activity_choose_bitmoji);
 
         //Wait a couple of second before opening game
         new Handler().postDelayed(new Runnable() {
@@ -70,7 +70,7 @@ public class ChooseBitmoji extends Activity {
     public void checkIfOnPauseOccurred(){
         //When no onPause occured, go to next page
         if(onBackButtonDevice==false){
-            ChooseBitmoji.this.startActivity(new Intent(ChooseBitmoji.this, InstructionPageBeforePlay.class));
+            ChooseBitmoji.this.startActivity(new Intent(ChooseBitmoji.this, MainActivity.class));
             ChooseBitmoji.this.finish();
         }
     }

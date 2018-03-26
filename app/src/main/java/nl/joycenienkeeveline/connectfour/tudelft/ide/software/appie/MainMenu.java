@@ -45,6 +45,7 @@ public class MainMenu extends Activity {
     //Let app close when back button is pressed
     //Source: https://stackoverflow.com/questions/5312334/how-to-handle-back-button-in-activity
     //Source: https://stackoverflow.com/questions/6014028/closing-application-with-exit-button
+    @Override
     public void onBackPressed() {
         finish();
         System.exit(0);
