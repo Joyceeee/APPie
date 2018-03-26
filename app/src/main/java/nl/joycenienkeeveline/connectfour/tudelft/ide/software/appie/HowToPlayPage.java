@@ -1,19 +1,19 @@
 package nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie;
 
 import android.app.Activity;
-import android.content.Context;
+//import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v4.view.GestureDetectorCompat;
+//import android.support.v4.view.GestureDetectorCompat;
 import android.os.Bundle;
-import android.view.GestureDetector;
+//import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Toast;
-import android.content.Context;
+//import android.widget.Toast;
+//import android.content.Context;
 
 
 
@@ -47,9 +47,7 @@ public class HowToPlayPage extends Activity{
         setContentView(R.layout.activity_how_to_play_page2);
     }
 
-    public void howtoNextPage2(View view) {
-        setContentView(R.layout.activity_how_to_play_page3);
-    }
+    public void howtoNextPage2(View view) { setContentView(R.layout.activity_how_to_play_page3); }
 
     public void howtoNextPage3(View view) {
         setContentView(R.layout.activity_how_to_play_page4);
