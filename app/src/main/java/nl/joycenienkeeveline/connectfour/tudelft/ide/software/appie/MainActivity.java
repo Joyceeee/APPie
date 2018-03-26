@@ -13,18 +13,14 @@ ERGENS VERMELDEN DAT SCHERM NIET UITGAAT TIJDENS GAME
 
 FIXEN ctrl F FIX
 Fixen gif
-Fizen afmetingen collision detection
 
 Pauze?
-Stop runnables when other page
 Code in klassen
 
 Methogs in klassen opdelen
 
-sara 6+
 UITLEG OVERAL BIJ
 delete system.out.println
-//SCORE DISPLAY __> RENZEN 1000 en 0 opstellen
 */
 
 import android.animation.ArgbEvaluator;
@@ -39,6 +35,7 @@ import android.graphics.Rect;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.media.Image;
+import android.media.SoundPool;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.os.Vibrator;
@@ -68,6 +65,11 @@ import java.util.TimeZone;
 //Source: https://www.youtube.com/watch?v=7d-IWhjxXIA
 import me.itangqi.waveloadingview.WaveLoadingView;
 
+//Make nice pause/playbutton possible
+//Source: See SparkButton MainMenu
+import com.varunest.sparkbutton.SparkButton;
+import com.varunest.sparkbutton.SparkEventListener;
+
 //Extend Activity instead of AppCompatActivity to remove title bar
 public class MainActivity extends Activity {
 
@@ -77,10 +79,16 @@ public class MainActivity extends Activity {
     //DELETE private TextView scoreLabel;
     private ImageView bitmoji1;
     private ImageView umbrellacovering;
+    private ImageView vlek1;
+    private ImageView vlek2;
+    private ImageView vlekplu1;
+    private ImageView vlekplu2;
     private ImageView cake1;
     private ImageView cake2;
     private ImageView umbrella;
     private ImageView sponge;
+    private Button pauseplay;
+    private SparkButton playpauseButton;
     private GifImageView gifImageViewGame;
 
     //Initialising size screen
@@ -142,8 +150,16 @@ public class MainActivity extends Activity {
     private int soundValue = 1;
     private int dataStoreSound;
 
+    //Getting level difficulty
+    private int increasementDifficulty;
+    private int advancedValue=1;
+    private int dataStoreAdvanced;
+
     //Initialise check if onPause occurred or not
     private boolean onBackButtonDevice=false;
+
+    //Initialise check if Pause option occurred or not
+    private int pauseOption;
 
     //Making rolling possible with accelerometer
     //Source: Workshop Four in a Row Software
@@ -160,6 +176,7 @@ public class MainActivity extends Activity {
             Intent intent = new Intent(this,
                     MainMenu.class);
             startActivity(intent);
+            finish();
         }
     }
 
@@ -174,6 +191,16 @@ public class MainActivity extends Activity {
 
         //Give a sign that onPause occurred
         onBackButtonDevice=true;
+    }
+
+    //When back button device is pressed return to menu
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+
+        Intent intent = new Intent(this,
+                MainMenu.class);
+        startActivity(intent);
     }
 
     @Override
@@ -199,10 +226,16 @@ public class MainActivity extends Activity {
         timer = (TextView)findViewById(R.id.timer);
         bitmoji1 = (ImageView)findViewById(R.id.bitmoji1);
         umbrellacovering = (ImageView)findViewById(R.id.bitmojiumbrella1);
+        vlek1 = (ImageView)findViewById(R.id.vlek1);
+        vlek2 = (ImageView)findViewById(R.id.vlek2);
+        vlekplu1 = (ImageView)findViewById(R.id.vlekplu1);
+        vlekplu2 = (ImageView)findViewById(R.id.vlekplu2);
         cake1 = (ImageView)findViewById(R.id.cake1);
         cake2 = (ImageView)findViewById(R.id.cake2);
         umbrella = (ImageView)findViewById(R.id.umbrella);
         sponge = (ImageView)findViewById(R.id.sponge);
+        pauseplay = (Button)findViewById(R.id.pauseplay);
+        playpauseButton = (SparkButton) findViewById(R.id.pausetoplaybutton);
         gifImageViewGame =(GifImageView)findViewById(R.id.gifImageViewGame);
         //DELETE scoreLabel = (TextView)findViewById(R.id.scoreLabel);
         waveLoadingView = (WaveLoadingView)findViewById(R.id.waveLoadingView);
@@ -224,6 +257,19 @@ public class MainActivity extends Activity {
         //When no value for sound, use default value
         if(dataStoreSound==1||dataStoreSound==2){soundValue=dataStoreSound;}
 
+        //Check which level of difficulty is wanted
+        //Get last value for level difficulty
+        dataStoreAdvanced = preferences.getInt("advanced", advancedValue);
+        //When no value for difficulty, use default value
+        if(dataStoreAdvanced==1||dataStoreAdvanced==2||dataStoreAdvanced==3||dataStoreAdvanced==4)
+        {advancedValue=dataStoreAdvanced;}
+
+        //Adjust decreasement score based on time with level of difficulty
+        if(advancedValue==1){increasementDifficulty=0;}
+        if(advancedValue==2){increasementDifficulty=5;}
+        if(advancedValue==3){increasementDifficulty=10;}
+        if(advancedValue==4){increasementDifficulty=15;}
+
         //Move falling objects out of screen --> FIXEN WANT NOG NIET OP MOBIEL GOED
         cake1.setX(screenWidth);
         cake1.setY(screenHeight);
@@ -236,6 +282,43 @@ public class MainActivity extends Activity {
 
         //Receive color of Score Bar
         //COLORFIX colorStart = waveLoadingView.getWaveColor();
+/*
+        //Make continue game possible after pause
+        //Source: https://www.programcreek.com/java-api-examples/?code=varunest/SparkButton/SparkButton-master/sparkbutton/src/main/java/com/varunest/sparkbutton/SparkEventListener.java#
+        //Source: https://github.com/varunest/SparkButton
+        playpauseButton.setEventListener(new SparkEventListener(){
+            @Override
+            public void onEvent(ImageView button, boolean buttonState) {
+            }
+
+            @Override
+            public void onEventAnimationEnd(ImageView button, boolean buttonState) {
+                pauseplay.setDrawingCacheBackgroundColor(getResources().getColor(R.color.spark_image_tint));
+                pauseplay.setBackgroundColor((getResources().getColor(R.color.spark_image_tint)));
+                System.out.println("CHECKKKK2       ");
+
+                //Continue the runnables and the sensorcontrol
+                motion = true;
+                handlerFallingObjects4.postDelayed(runnableFallingObjects4, 5);
+                handlerFallingObjects3.postDelayed(runnableFallingObjects3, 5);
+                handlerFallingObjects2.postDelayed(runnableFallingObjects2, 5);
+                handlerFallingObjects.postDelayed(runnableFallingObjects, 5);
+                customHandler.postDelayed(updateTimerThread, 0);
+                handlerScoreTimerDown.postDelayed(runnableScoreTimer, 1);
+
+                //If umbrella is visible continue waitfunction umbrella
+                if(umbrellacovering.getVisibility()==View.VISIBLE){
+                    waitFunction(3000, 6);}
+
+                //Make pause button invisible again
+                playpauseButton.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onEventAnimationStart(ImageView button, boolean buttonState) {
+            }
+        });*/
+
 
         //Making Gif appear
         try{
@@ -259,6 +342,7 @@ public class MainActivity extends Activity {
         waitFunction(25450,4);
     }
 
+
     //A delay function introduced in the game
     public void waitFunction (int timeToWait, final int functionCall){
         //Make fade in animation for timer in background
@@ -274,14 +358,14 @@ public class MainActivity extends Activity {
 
             public void onFinish() {
                 if(score>0) {
-                    //Starting falling objects
-                    if (functionCall == 2) {
+                    //Starting falling objects if now pause has occurred yet
+                    if (functionCall == 2 && pauseOption != 1) {
                         changePosCake2();
-                    } else if (functionCall == 3) {
+                    } else if (functionCall == 3 && pauseOption != 1) {
                         changePosSponge();
-                    } else if (functionCall == 4) {
+                    } else if (functionCall == 4 && pauseOption != 1) {
                         changePosUmbrella();
-                    } else if (functionCall == 5) {
+                    } else if (functionCall == 5 && pauseOption != 1) {
                         //Starting falling objects
                         changePosCake1();
 
@@ -290,6 +374,9 @@ public class MainActivity extends Activity {
 
                         //Making Gif disappear
                         gifImageViewGame.setVisibility(View.INVISIBLE);
+
+                        //Making Pause option possible
+                        pauseplay.setClickable(true);
 
                         //Run timer
                         //Source: http://en.proft.me/2017/11/18/how-create-count-timer-android/
@@ -304,10 +391,14 @@ public class MainActivity extends Activity {
 
                     //When the umbrella is caught, no falling object influences the score for 10 seconds
                     else if (functionCall == 6) {
-                        //Let the umbrella over the bitmoji disappear again
-                        umbrellacovering.setVisibility(View.INVISIBLE);
-                        //Let the falling objects influence the score again
-                        umbrellaFactor = 1;
+                        //Let the umbrella over the bitmoji with its smudges disappear again when there is no pause
+                        if(pauseplay.getDrawingCacheBackgroundColor() == getResources().getColor(R.color.spark_image_tint)) {
+                            umbrellacovering.setVisibility(View.INVISIBLE);
+                            vlekplu1.setVisibility(View.INVISIBLE);
+                            vlekplu2.setVisibility(View.INVISIBLE);
+                            //Let the falling objects influence the score again
+                            umbrellaFactor = 1;
+                        }
                     }
                 }
             }
@@ -420,15 +511,19 @@ public class MainActivity extends Activity {
     public void hitCheck(){
         if(viewsOverlap(cake1,bitmoji1)){
             cake1y=screenHeight;
-            Score(20);
+            Score(30);
             //Play sound when collision
             if(soundValue==1){sound.playCakeSound();}
+            //Cause smudges
+            smudgesCausedByCakes();
         }
 
         if(viewsOverlap(cake2,bitmoji1)){
             cake2y=screenHeight;
-            Score(30);
+            Score(20);
             if(soundValue==1){sound.playCakeSound();}
+            //Cause smudges
+            smudgesCausedByCakes();
         }
 
         if(viewsOverlap(umbrella,bitmoji1)){
@@ -447,12 +542,43 @@ public class MainActivity extends Activity {
             spongey=screenHeight;
             Score(-150);
             if(soundValue==1){sound.playSpongeSound();}
+            //Make umbrella and bitmoji clean from smudges
+            smudgesCleanedBySponge();
             System.out.println("GERAAKT Spons");
         }
 
         System.out.print("scoreCatchingCakes");
         System.out.println(score);
 
+    }
+
+    public void smudgesCleanedBySponge(){
+        //Only make bitmoji clean when umbrella is not visible
+        if(umbrellacovering.getVisibility()==View.VISIBLE){
+        vlekplu1.setVisibility(View.INVISIBLE);
+        vlekplu2.setVisibility(View.INVISIBLE);}
+        //Else make bitmoji clean
+        else{vlek1.setVisibility(View.INVISIBLE);
+            vlek2.setVisibility(View.INVISIBLE);}
+    }
+
+    public void smudgesCausedByCakes(){
+        //Give umbrella stains if visible
+        if(umbrellacovering.getVisibility()==View.VISIBLE){
+            if (vlekplu1.getVisibility()==View.VISIBLE)
+            {vlekplu2.setVisibility(View.VISIBLE);
+                vlekplu1.setVisibility(View.INVISIBLE);}
+            else{vlekplu1.setVisibility(View.VISIBLE);
+                vlekplu2.setVisibility(View.INVISIBLE);}
+        }
+        //Else give bitmoji smudges each time it hits a cake
+        else{
+            if (vlek1.getVisibility()==View.VISIBLE)
+            {vlek2.setVisibility(View.VISIBLE);
+                vlek1.setVisibility(View.INVISIBLE);}
+            else{vlek1.setVisibility(View.VISIBLE);
+                vlek2.setVisibility(View.INVISIBLE);}
+        }
     }
 
     //Check for collision
@@ -682,7 +808,9 @@ public class MainActivity extends Activity {
 
             }
             else{
-                score-=20;
+                score-=(20+increasementDifficulty);
+                System.out.print("INCREASMENT  ");
+                System.out.println(increasementDifficulty);
             }
             scoreVisual();
         }
@@ -720,4 +848,49 @@ public class MainActivity extends Activity {
         //Stop motion of bitmoji
         motion = false;
         }
+
+
+    //Fix buttons pauze
+    //Okay met begin?
+    //Make game pause when screen is touched
+    public void pauseplay(View view) {
+        //Prevent pause when game is over
+        if(score <= 0){}
+        else {
+            if (pauseplay.getDrawingCacheBackgroundColor() == getResources().getColor(R.color.spark_image_tint)) {
+                System.out.println("CHECKKKK       ");
+                //Let system know pause occurred
+                pauseOption = 1;
+                endOfGame();
+                //Make pause screen appear
+                pauseplay.setDrawingCacheBackgroundColor(getResources().getColor(R.color.colorPause));
+                pauseplay.setBackgroundColor((getResources().getColor(R.color.colorPause)));
+
+                //Make pausebutton appear
+               // playpauseButton.setVisibility(View.VISIBLE);
+            }
+
+             //Make pause screen disappear
+             else {pauseplay.setDrawingCacheBackgroundColor(getResources().getColor(R.color.spark_image_tint));
+                pauseplay.setBackgroundColor((getResources().getColor(R.color.spark_image_tint)));
+                System.out.println("CHECKKKK2       ");
+
+                //Continue the runnables and the sensorcontrol
+                motion = true;
+                handlerFallingObjects4.postDelayed(runnableFallingObjects4, 5);
+                handlerFallingObjects3.postDelayed(runnableFallingObjects3, 5);
+                handlerFallingObjects2.postDelayed(runnableFallingObjects2, 5);
+                handlerFallingObjects.postDelayed(runnableFallingObjects, 5);
+                customHandler.postDelayed(updateTimerThread, 0);
+                handlerScoreTimerDown.postDelayed(runnableScoreTimer, 1);
+
+                //If umbrella is visible continue waitfunction umbrella
+                if(umbrellacovering.getVisibility()==View.VISIBLE){
+                    waitFunction(3000, 6);
+                }
+        }
+    }
+
 }
+}
+

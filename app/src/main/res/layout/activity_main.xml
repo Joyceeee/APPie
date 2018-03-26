@@ -115,6 +115,28 @@
                 android:src="@drawable/bitmoji" />
 
             <ImageView
+                android:id="@+id/vlek1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/todo"
+                android:scaleType="fitXY"
+                android:src="@drawable/vlek1"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/vlek2"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/todo"
+                android:scaleType="fitXY"
+                android:src="@drawable/vlek2"
+                android:visibility="invisible"/>
+
+            <ImageView
             android:id="@+id/bitmojiumbrella1"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
@@ -125,6 +147,30 @@
             android:scaleType="fitXY"
             android:src="@drawable/umbrellacovering"
             android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/vlekplu1"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/todo"
+                android:paddingBottom="9dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/vlekplu1"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/vlekplu2"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/todo"
+                android:paddingBottom="9dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/vlekplu2"
+                android:visibility="invisible" />
 
             <!--
             DELETE
@@ -163,6 +209,27 @@
                 android:layout_height="match_parent"
                 android:scaleType="fitCenter"
                 android:visibility="visible" />
+
+            <Button
+                android:id="@+id/pauseplay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/spark_image_tint"
+                android:clickable="false"
+                android:onClick="pauseplay"
+                android:visibility="visible"/>
+
+            <com.varunest.sparkbutton.SparkButton
+                android:id="@+id/pausetoplaybutton"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                app:sparkbutton_activeImage="@drawable/playbutton"
+                app:sparkbutton_iconSize="80dp"
+                app:sparkbutton_inActiveImage="@drawable/pausebutton"
+                app:sparkbutton_primaryColor="@color/spark_image_tint"
+                app:sparkbutton_secondaryColor="@color/spark_image_tint" />
 
         </FrameLayout>
     </LinearLayout>

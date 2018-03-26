@@ -32,6 +32,10 @@ public class OnControlListenerImpl implements SensorControlListener.OnControlLis
             sensorX=sensorX-x*ROLLING_SPEED;
             ImageView bitmoji1=(ImageView)mainActivity.findViewById(R.id.bitmoji1);
             ImageView umbrellacovering=(ImageView)mainActivity.findViewById(R.id.bitmojiumbrella1);
+            ImageView vlek1=(ImageView)mainActivity.findViewById(R.id.vlek1);
+            ImageView vlek2=(ImageView)mainActivity.findViewById(R.id.vlek2);
+            ImageView vlekplu1=(ImageView)mainActivity.findViewById(R.id.vlekplu1);
+            ImageView vlekplu2=(ImageView)mainActivity.findViewById(R.id.vlekplu2);
 
             //Set boundaries field in which bitmoji must move
             if (sensorX<(-bitmoji1.getWidth()/2)) sensorX=-bitmoji1.getWidth()/2;
@@ -39,11 +43,16 @@ public class OnControlListenerImpl implements SensorControlListener.OnControlLis
                 sensorX=mainActivity.screenWidth-(bitmoji1.getWidth()/2);
 
             screenHeight = mainActivity.screenHeight;
-            //Set new position bitmoji
+            //Set new position bitmoji and cake smudges
             bitmoji1.setX(sensorX);
+            vlek1.setX(sensorX);
+            vlek2.setX(sensorX);
 
-            //Make sure umbrella moves along on the right place
+            //Make sure umbrella moves along on the right place, just like the cake smudges
             umbrellacovering.setX(sensorX+bitmoji1.getWidth()/5);
+            vlekplu1.setX(sensorX+bitmoji1.getWidth()/5);
+            vlekplu2.setX(sensorX+bitmoji1.getWidth()/5);
+
             time=System.currentTimeMillis(); // reset the time
             moving=true;
         }

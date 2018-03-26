@@ -1,12 +1,23 @@
 package nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
 public class RankingPage extends Activity {
+
+    //When back button device is pressed return to menu
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+
+        Intent intent = new Intent(this,
+                MainMenu.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

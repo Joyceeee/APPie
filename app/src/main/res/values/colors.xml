@@ -9,4 +9,5 @@
     <color name="colorBLUEEE">#00ffff</color>
     <color name="colorScoreBarBackground">#2b000000</color>
     <color name="colorScoreBar">#ff5b92</color>
+    <color name="colorPause">#61000000</color>
 </resources>

@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+//https://www.youtube.com/watch?v=sTJm1Ys9jMI
+
 public class ChooseBitmoji extends Activity {
 
     //Initialise check if onPause occurred or not
@@ -22,13 +24,26 @@ public class ChooseBitmoji extends Activity {
             Intent intent = new Intent(this,
                     MainMenu.class);
             startActivity(intent);
+            finish();
         }
     }
+
+    @Override
     protected void onPause(){
         super.onPause();
 
         //Give a sign that onPause occurred
         onBackButtonDevice=true;
+    }
+
+    //When back button device is pressed return to menu
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+
+        Intent intent = new Intent(this,
+                MainMenu.class);
+        startActivity(intent);
     }
 
     @Override

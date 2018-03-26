@@ -1,5 +1,6 @@
 package nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Point;
@@ -26,14 +27,6 @@ import com.varunest.sparkbutton.SparkEventListener;
 // extends Activity instead of AppCompatActivity to remove title bar.
 public class MainMenu extends Activity {
 
-    private Button otherscreen;
-    private Button sparkButtonoverlay;
-    private Button sparkButtonoverlay2;
-    private SparkButton sparkButton;
-    private SparkButton sparkButton2;
-    private Button buttonHow;
-    private Handler mHandler = new Handler();
-
     //Initialise screen size
     private int screenWidth;
     private int screenHeight;
@@ -49,6 +42,15 @@ public class MainMenu extends Activity {
     public int play_height;
     private int titlebar_height;
 
+    //Let app close when back button is pressed
+    //Source: https://stackoverflow.com/questions/5312334/how-to-handle-back-button-in-activity
+    //Source: https://stackoverflow.com/questions/6014028/closing-application-with-exit-button
+    public void onBackPressed() {
+        finish();
+        System.exit(0);
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,12 +61,6 @@ public class MainMenu extends Activity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main_menu);
-
-        sparkButtonoverlay=(Button)findViewById(R.id.spark_button_overlay);
-        sparkButtonoverlay2=(Button)findViewById(R.id.spark_button_overlay2);
-        buttonHow=(Button)findViewById(R.id.buttonhow);
-        //sparkButton2=(SparkButton)findViewById(R.id.spark_button2);
-        //sparkButton=(SparkButton)findViewById(R.id.spark_button);
 
         //Finding button images
         play = (SparkButton) findViewById(R.id.spark_button);
@@ -105,71 +101,72 @@ public class MainMenu extends Activity {
             }
         });
 
+
+        //Start page belong to the activated buttons
+        //Source: https://www.programcreek.com/java-api-examples/?code=varunest/SparkButton/SparkButton-master/sparkbutton/src/main/java/com/varunest/sparkbutton/SparkEventListener.java#
+        //Source: https://github.com/varunest/SparkButton
+        play.setEventListener(new SparkEventListener(){
+            @Override
+            public void onEvent(ImageView button, boolean buttonState) {
+            }
+
+            @Override
+            public void onEventAnimationEnd(ImageView button, boolean buttonState) {
+                MainMenu.this.startActivity(new Intent(MainMenu.this, ChooseBitmoji.class));
+                MainMenu.this.finish();
+            }
+
+            @Override
+            public void onEventAnimationStart(ImageView button, boolean buttonState) {
+            }
+        });
+
+        how_to_play.setEventListener(new SparkEventListener(){
+            @Override
+            public void onEvent(ImageView button, boolean buttonState) {
+            }
+
+            @Override
+            public void onEventAnimationEnd(ImageView button, boolean buttonState) {
+                MainMenu.this.startActivity(new Intent(MainMenu.this, HowToPlayPage.class));
+                MainMenu.this.finish();
+            }
+
+            @Override
+            public void onEventAnimationStart(ImageView button, boolean buttonState) {
+            }
+        });
+
+        settings.setEventListener(new SparkEventListener(){
+            @Override
+            public void onEvent(ImageView button, boolean buttonState) {
+            }
+
+            @Override
+            public void onEventAnimationEnd(ImageView button, boolean buttonState) {
+                MainMenu.this.startActivity(new Intent(MainMenu.this, SettingsPage.class));
+                MainMenu.this.finish();
+            }
+
+            @Override
+            public void onEventAnimationStart(ImageView button, boolean buttonState) {
+            }
+        });
+
+        ranking.setEventListener(new SparkEventListener(){
+            @Override
+            public void onEvent(ImageView button, boolean buttonState) {
+            }
+
+            @Override
+            public void onEventAnimationEnd(ImageView button, boolean buttonState) {
+                MainMenu.this.startActivity(new Intent(MainMenu.this, RankingPage.class));
+                MainMenu.this.finish();
+            }
+
+            @Override
+            public void onEventAnimationStart(ImageView button, boolean buttonState) {
+            }
+        });
     }
-
-
-    public void playClick(View view) {
-        long t1 = System.currentTimeMillis();
-        while (true) {
-            long t2 = System.currentTimeMillis();
-            if (t2 - t1 > 1500) break;
-        }
-
-        if (view==sparkButtonoverlay){
-        Intent intent = new Intent(this,
-                ChooseBitmoji.class);
-        startActivity(intent);}
-        else{Intent intent = new Intent(this,
-                SettingsPage.class);
-            startActivity(intent);}
-    }
-
-    public void howtoClick(View view){
-        long t1 = System.currentTimeMillis();
-        while (true) {
-            long t2 = System.currentTimeMillis();
-            if (t2 - t1 > 1500) break;
-        }
-        Intent intent = new Intent(this,
-                HowToPlayPage.class);
-        startActivity(intent);
-    }
-
-    //Let app close when back button is pressed
-    //Source: https://stackoverflow.com/questions/5312334/how-to-handle-back-button-in-activity
-    //Source: https://stackoverflow.com/questions/6014028/closing-application-with-exit-button
-    public void onBackPressed() {
-        finish();
-        System.exit(0);
-    }
-
-    //sparkButton.setEventListener(new SparkEventListener(){
-    //@Override
-    //void onEvent(ImageView button, boolean buttonState) {
-      // if (buttonState) {
-     //Button is active
-      // } else {
-      //    // Button is inactive3
-      //}
-     //}});
 }
-      //  @Override
-        //void onEvent(ImageView button, boolean buttonState) {
-          //  if (buttonState) {
- //
-   //         } else {
-     //           Intent intent = new Intent(this,
-       //                 InstructionPageBeforePlay.class);
-         //       startActivity(intent);
-           // }
-       // }
-   // };
-
-
-
-
-
-
-
-
-

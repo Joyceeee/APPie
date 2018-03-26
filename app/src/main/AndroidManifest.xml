@@ -5,6 +5,9 @@
     <!--
     Give app permission to vibrate
     Source: https://stackoverflow.com/questions/13950338/how-to-make-an-android-device-vibrate
+
+    Preventing app from going in landscape mode
+    Source: https://stackoverflow.com/questions/2730855/prevent-screen-rotation-on-android
     -->
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -15,25 +18,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainMenu" />
-        <activity android:name=".InstructionPageBeforePlay" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainMenu"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".InstructionPageBeforePlay"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".SettingsPage" />
-        <activity android:name=".HowToPlayPage" />
-        <activity android:name=".RankingPage" />
-        <activity android:name=".ChooseBitmoji"></activity>
+        <activity android:name=".SettingsPage"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".HowToPlayPage"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RankingPage"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ChooseBitmoji"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

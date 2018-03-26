@@ -1,8 +1,9 @@
 package nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie;
 
 import android.app.Activity;
-//import android.content.Context;
+import android.content.Context;
 import android.content.Intent;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 //import android.support.v4.view.GestureDetectorCompat;
 import android.os.Bundle;
@@ -19,10 +20,19 @@ import android.widget.Button;
 
 
 
-public class HowToPlayPage extends Activity{
-
+public class HowToPlayPage extends Activity {
     //private GestureDetectorCompat gDetector;
 
+
+    //When back button device is pressed return to menu
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+
+        Intent intent = new Intent(this,
+                MainMenu.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +48,7 @@ public class HowToPlayPage extends Activity{
         setContentView(R.layout.activity_how_to_play_page);
     }
 
-    //@Override
-    //public boolean onDown(MotionEvent event) {
-    //    setContentView(R.layout.activity_how_to_play_page2);
-    //}
-
-    public void howtoNextPage(View view) {
-        setContentView(R.layout.activity_how_to_play_page2);
-    }
+    public void howtoNextPage(View view) { setContentView(R.layout.activity_how_to_play_page2); }
 
     public void howtoNextPage2(View view) { setContentView(R.layout.activity_how_to_play_page3); }
 

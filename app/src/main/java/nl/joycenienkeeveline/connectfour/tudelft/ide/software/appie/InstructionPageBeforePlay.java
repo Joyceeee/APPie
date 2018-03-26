@@ -38,6 +38,17 @@ public class InstructionPageBeforePlay extends Activity {
         onBackButtonDevice=true;
     }
 
+    //When back button device is pressed return to menu
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+
+        Intent intent = new Intent(this,
+                MainMenu.class);
+        startActivity(intent);
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

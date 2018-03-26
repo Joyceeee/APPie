@@ -45,8 +45,8 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:paddingTop="15dp"
+            android:layout_height="33dp"
+            android:paddingTop="10dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/settingstext"/>
 
@@ -56,36 +56,181 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="90dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="30dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/soundicon" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="195dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/advancedtext" />
+
+            <ImageView
+                android:id="@+id/soundoff"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_marginLeft="112dp"
+                android:layout_marginTop="70dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/soundoffimage"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/soundon"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="70dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/soundonimage"
+                android:visibility="visible"/>
+
+            <ImageView
+                android:id="@+id/middledeselectedlevel2"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="184dp"
+                android:layout_marginTop="160dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/middledeselectedlevel"/>
+
+            <ImageView
+                android:id="@+id/middledeselectedlevel1"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="112dp"
+                android:layout_marginTop="160dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/middledeselectedlevel" />
+
+            <ImageView
+                android:id="@+id/middleselectedlevel2"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="184dp"
+                android:layout_marginTop="160dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/middleselectedlevel"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/middleselectedlevel1"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="112dp"
+                android:layout_marginTop="160dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/middleselectedlevel"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/rightdeselectedlevel"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="256dp"
+                android:layout_marginTop="160dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/rightdeselectedlevel" />
+
+            <ImageView
+                android:id="@+id/rightselectedlevel"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="256dp"
+                android:layout_marginTop="160dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/rightselectedlevel"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="185dp"
+                android:layout_gravity="bottom|right"
+                android:adjustViewBounds="true"
+                android:paddingBottom="10dp"
+                android:paddingRight="10dp"
+                android:src="@drawable/cupcakesettings" />
+
+            <ImageView
+                android:id="@+id/leftselectedlevel"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="160dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/leftselectedlevel" />
+
+            <Button
+                android:id="@+id/sound_on"
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="153dp"
                 android:layout_marginTop="50dp"
-                android:layout_marginBottom="50dp"
-                android:src="@drawable/soundicon"/>
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:onClick="soundOFF" />
+
+            <Button
+                android:id="@+id/sound_off"
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="50dp"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:onClick="soundON"/>
+
+            <Button
+                android:id="@+id/leftselectedlevelButton"
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="140dp"
+                android:adjustViewBounds="true"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:onClick="advanced1" />
+
+            <Button
+                android:id="@+id/rightselectedlevelButton"
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="256dp"
+                android:layout_marginTop="140dp"
+                android:adjustViewBounds="true"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:onClick="advanced4" />
+
+            <Button
+                android:id="@+id/middleselectedlevel1Button"
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="112dp"
+                android:layout_marginTop="140dp"
+                android:adjustViewBounds="true"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:onClick="advanced2" />
+
+            <Button
+                android:id="@+id/middleselectedlevel2Button"
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="184dp"
+                android:layout_marginTop="140dp"
+                android:adjustViewBounds="true"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:onClick="advanced3" />
+
 
         </FrameLayout>
-
-        <Button
-            android:id="@+id/sound_on"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="80dp"
-            android:background="@color/colorAccent"
-            android:clickable="true"
-            android:onClick="soundON"
-            android:text="Soundon"
-            android:visibility="visible" />
-
-        <Button
-            android:id="@+id/sound_off"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:background="@color/colorAccent"
-            android:clickable="true"
-            android:onClick="soundOFF"
-            android:text="Soundoff"
-            android:visibility="visible" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
