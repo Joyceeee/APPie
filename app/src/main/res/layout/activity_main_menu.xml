@@ -91,6 +91,14 @@
             app:sparkbutton_primaryColor="@color/colorPrimary"
             app:sparkbutton_secondaryColor="@color/colorSecondary"/>
 
+            <Button
+                android:id="@+id/buttonhow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:onClick="howtoClick"
+                android:text="Button" />
+
         <com.varunest.sparkbutton.SparkButton
             android:id="@+id/spark_button4"
             android:layout_width="wrap_content"
@@ -112,8 +120,9 @@
             app:sparkbutton_inActiveImage="@drawable/howtoactive"
             app:sparkbutton_primaryColor="@color/colorPrimary"
             app:sparkbutton_secondaryColor="@color/colorSecondary" />
-        <!--https://www.youtube.com/watch?v=pRTS_BQDM6Y
-            https://github.com/varunest/SparkButton-->
+
+            <!--https://www.youtube.com/watch?v=pRTS_BQDM6Y
+                https://github.com/varunest/SparkButton-->
 
 
         </FrameLayout>

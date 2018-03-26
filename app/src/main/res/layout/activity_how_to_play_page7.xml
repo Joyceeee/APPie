@@ -46,7 +46,6 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/layoutdots1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -81,7 +80,7 @@
             android:layout_height="30dp"
             android:layout_marginTop="60dp"
             android:layout_toEndOf="@+id/dot3"
-            android:src="@drawable/rondjewit"/>
+            android:src="@drawable/rondjegevuld"/>
 
         <ImageView
             android:id="@+id/dot5"
@@ -105,7 +104,7 @@
             android:layout_height="30dp"
             android:layout_marginTop="60dp"
             android:layout_toStartOf="@+id/dot6"
-            android:src="@drawable/rondjegevuld"/>
+            android:src="@drawable/rondjewit"/>
 
 
     </RelativeLayout>
@@ -120,27 +119,61 @@
             android:layout_height="200dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/circle1copy"
-            android:id="@+id/imageView3" />
+            android:src="@drawable/circle7" />
 
         <ImageView
+            android:id="@+id/balk5"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="90dp"
+            android:src="@drawable/balk5"/>
+
+        <ImageView
+            android:id="@+id/pop7"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:src="@drawable/poppetjecopy" />
 
+        <ImageView
+            android:id="@+id/midgetsponge"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignBottom="@+id/pop7"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="100dp"
+            android:src="@drawable/midgetsponge" />
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignTop="@+id/midgetsponge"
+            android:layout_toEndOf="@+id/midgetsponge"
+            android:src="@drawable/honderdvijftig" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignTop="@+id/balk5"
+            android:layout_toStartOf="@id/circle4"
+            android:layout_marginTop="60dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/midgetsponge" />
+
+
         <Button
-            android:id="@+id/howtoNextPage"
+            android:id="@+id/howtoNextPage7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="39dp"
             android:layout_marginEnd="7dp"
-            android:onClick="howtoNextPage"
-            android:text="Next page" />
-
+            android:onClick="howtoNextPage7"
+            android:text="Go to menu" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

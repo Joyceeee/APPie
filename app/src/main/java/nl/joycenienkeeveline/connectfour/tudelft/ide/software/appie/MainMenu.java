@@ -30,6 +30,8 @@ public class MainMenu extends Activity {
     private Button sparkButtonoverlay;
     private Button sparkButtonoverlay2;
     private SparkButton sparkButton;
+    private SparkButton sparkButton2;
+    private Button buttonHow;
     private Handler mHandler = new Handler();
 
     //Initialise screen size
@@ -60,6 +62,8 @@ public class MainMenu extends Activity {
 
         sparkButtonoverlay=(Button)findViewById(R.id.spark_button_overlay);
         sparkButtonoverlay2=(Button)findViewById(R.id.spark_button_overlay2);
+        buttonHow=(Button)findViewById(R.id.buttonhow);
+        //sparkButton2=(SparkButton)findViewById(R.id.spark_button2);
         //sparkButton=(SparkButton)findViewById(R.id.spark_button);
 
         //Finding button images
@@ -120,6 +124,17 @@ public class MainMenu extends Activity {
             startActivity(intent);}
     }
 
+    public void howtoClick(View view){
+        long t1 = System.currentTimeMillis();
+        while (true) {
+            long t2 = System.currentTimeMillis();
+            if (t2 - t1 > 1500) break;
+        }
+        Intent intent = new Intent(this,
+                HowToPlayPage.class);
+        startActivity(intent);
+    }
+
     //Let app close when back button is pressed
     //Source: https://stackoverflow.com/questions/5312334/how-to-handle-back-button-in-activity
     //Source: https://stackoverflow.com/questions/6014028/closing-application-with-exit-button
@@ -131,13 +146,12 @@ public class MainMenu extends Activity {
     //sparkButton.setEventListener(new SparkEventListener(){
     //@Override
     //void onEvent(ImageView button, boolean buttonState) {
-    //   if (buttonState) {
-    // Button is active
-    //   } else {
-    //      // Button is inactive3
-    //  }
-    // }
-    //});
+      // if (buttonState) {
+     //Button is active
+      // } else {
+      //    // Button is inactive3
+      //}
+     //}});
 }
       //  @Override
         //void onEvent(ImageView button, boolean buttonState) {
