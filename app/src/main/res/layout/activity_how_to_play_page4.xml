@@ -127,7 +127,7 @@
             android:layout_width="30dp"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="40dp"
             android:layout_marginTop="90dp"
             android:src="@drawable/balk2" />
 
@@ -163,16 +163,15 @@
             android:layout_marginTop="40dp"
             android:src="@drawable/midgetcupcake" />
 
-        <Button
+        <ImageView
             android:id="@+id/howtoNextPage4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/balk2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginBottom="28dp"
-            android:layout_marginEnd="21dp"
+            android:layout_marginBottom="5dp"
             android:onClick="howtoNextPage4"
-            android:text="Next page" />
+            android:src="@drawable/nextbutton" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
