@@ -73,6 +73,7 @@ public class HowToPlayPage extends Activity{
 
 
     //}
+    
 
 
 
