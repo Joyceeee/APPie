@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie.GameOver">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/todo"
+        android:gravity="center_vertical"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mooigrijsisnietlelijk" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/todo"
+                android:gravity="center_vertical"
+                android:scaleType="centerCrop"
+                android:src="@drawable/mooirozeisnietlelijk" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:contentDescription="@string/todo"
+                android:gravity="center_horizontal"
+                android:src="@drawable/appietekst" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/taptochange"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:layout_below="@+id/yourname"
+            android:layout_toEndOf="@+id/gameover"
+            android:src="@drawable/taptochange" />
+
+        <ImageView
+            android:id="@+id/yourname"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/yourname"/>
+
+
+        <ImageView
+            android:id="@+id/playagain"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="70dp"
+            android:onClick="playagain"
+            android:src="@drawable/playagain"/>
+
+        <ImageView
+            android:id="@+id/homescreen"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="70dp"
+            android:onClick="gotoHome"
+            android:src="@drawable/homescreen"/>
+
+        <ImageView
+            android:id="@+id/gameover"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/gameover"
+             />
+
+        <ImageView
+            android:id="@+id/yourscore"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/yourname"
+            android:layout_marginTop="-80dp"
+            android:src="@drawable/yourscore"/>
+
+
+        <ImageView
+            android:id="@+id/highscore"
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/yourname"
+            android:layout_marginTop="-40dp"
+            android:src="@drawable/highscore"/>
+
+
+
+
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

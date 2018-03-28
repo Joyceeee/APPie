@@ -410,19 +410,30 @@ public class MainActivity extends Activity {
         if (score>0){
             score += points*umbrellaFactor;
         }
-
         //Check if one is game over or not
         else {
             //FIX --> Hier verwijzing einde game
             endOfGame();
             //Make device vibrate when game over as feedback
             vibrate();
+            //Go to the GameOver page
+            goGameOver();
         }
 
         //DELETE scoreLabel.setText(String.valueOf(score));
         //Make score bar change
         scoreVisual();
         //HIER FIX VISUAL APPEARANCE
+    }
+
+    public void goGameOver(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                MainActivity.this.startActivity(new Intent(MainActivity.this, GameOver.class));
+                MainActivity.this.finish();
+            }
+        },2500);
     }
 
 
@@ -805,6 +816,8 @@ public class MainActivity extends Activity {
                 endOfGame();
                 //Make device vibrate when game over as feedback
                 vibrate();
+                //Go to the GameOver page
+                goGameOver();
 
             }
             else{

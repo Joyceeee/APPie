@@ -37,6 +37,9 @@
 
         <activity android:name=".SettingsPage"
             android:screenOrientation="portrait"/>
+        <activity android:name=".GameOver"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
         <activity android:name=".HowToPlayPage"
             android:screenOrientation="portrait"/>
         <activity android:name=".RankingPage"
