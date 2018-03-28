@@ -2,6 +2,7 @@ package nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -12,6 +13,41 @@ import android.view.WindowManager;
  */
 
 public class GameOver extends Activity {
+
+    //Initialise check if onPause occurred or not
+    private boolean onBackButtonDevice=false;
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        //If onPause occurred, go to Menu page when returning
+        if(onBackButtonDevice == true){
+            Intent intent = new Intent(this,
+                    MainMenu.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+
+        //Give a sign that onPause occurred
+        onBackButtonDevice=true;
+    }
+
+    //When back button device is pressed return to menu
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+
+        Intent intent = new Intent(this,
+                MainMenu.class);
+        startActivity(intent);
+    }
+
 
 
     @Override

@@ -26,13 +26,19 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
+    //Add Library for loadscreen
+    //Source: https://www.youtube.com/watch?v=Mas3Lnd3WtM
     compile 'com.felipecsl:gifimageview:2.1.0'
     compile 'commons-io:commons-io:2.4'
-    //voor loadscreen https://www.youtube.com/watch?v=Mas3Lnd3WtM
 
+    //Add Library for Sparkbuttons
+    //Source: https://github.com/varunest/SparkButton
     compile 'com.github.varunest:sparkbutton:1.0.5'
-    //voor mooie buttons https://github.com/varunest/SparkButton
 
-    //Ad Librabry for score bar
+    //Add Library for score bar
     compile 'me.itangqi.waveloadingview:library:0.3.5'
+
+    //Add Library for Carousel
+    //Source:https://www.youtube.com/watch?v=sTJm1Ys9jMI
+    compile 'com.github.devlight:infinitecycleviewpager:1.0.2'
 }

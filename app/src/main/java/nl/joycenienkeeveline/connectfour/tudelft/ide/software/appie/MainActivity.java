@@ -36,6 +36,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.media.Image;
 import android.media.SoundPool;
+import android.opengl.Visibility;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.os.Vibrator;
@@ -78,6 +79,8 @@ public class MainActivity extends Activity {
     private TextView timer;
     //DELETE private TextView scoreLabel;
     private ImageView bitmoji1;
+    private ImageView bitmoji2;
+    private ImageView bitmoji3;
     private ImageView umbrellacovering;
     private ImageView vlek1;
     private ImageView vlek2;
@@ -149,6 +152,10 @@ public class MainActivity extends Activity {
     private SoundPlayer sound;
     private int soundValue = 1;
     private int dataStoreSound;
+
+    //Getting right bitmoji
+    private int valueBitmojiSelected;
+    private int bitmojiToImplement;
 
     //Getting level difficulty
     private int increasementDifficulty;
@@ -225,6 +232,8 @@ public class MainActivity extends Activity {
         //Source: https://coding-with-sara.thinkific.com/courses/take/catch-the-ball-android-studio-game-tutorial/lessons/1510621-3-findviewbyid-ontouchevent
         timer = (TextView)findViewById(R.id.timer);
         bitmoji1 = (ImageView)findViewById(R.id.bitmoji1);
+        bitmoji2 = (ImageView)findViewById(R.id.bitmoji2);
+        bitmoji3 = (ImageView)findViewById(R.id.bitmoji3);
         umbrellacovering = (ImageView)findViewById(R.id.bitmojiumbrella1);
         vlek1 = (ImageView)findViewById(R.id.vlek1);
         vlek2 = (ImageView)findViewById(R.id.vlek2);
@@ -257,6 +266,13 @@ public class MainActivity extends Activity {
         //When no value for sound, use default value
         if(dataStoreSound==1||dataStoreSound==2){soundValue=dataStoreSound;}
 
+        //Check which bitmoji to implement and make the right one visible
+        SharedPreferences preferences2 = getSharedPreferences("bitmoji_settings",MODE_PRIVATE);
+        bitmojiToImplement = preferences.getInt("bitmoji", valueBitmojiSelected);
+        if(valueBitmojiSelected==0){bitmoji1.setVisibility(View.VISIBLE);}
+        if(valueBitmojiSelected==1){bitmoji2.setVisibility(View.VISIBLE);}
+        if(valueBitmojiSelected==2){bitmoji3.setVisibility(View.VISIBLE);}
+
         //Check which level of difficulty is wanted
         //Get last value for level difficulty
         dataStoreAdvanced = preferences.getInt("advanced", advancedValue);
@@ -282,7 +298,7 @@ public class MainActivity extends Activity {
 
         //Receive color of Score Bar
         //COLORFIX colorStart = waveLoadingView.getWaveColor();
-/*
+
         //Make continue game possible after pause
         //Source: https://www.programcreek.com/java-api-examples/?code=varunest/SparkButton/SparkButton-master/sparkbutton/src/main/java/com/varunest/sparkbutton/SparkEventListener.java#
         //Source: https://github.com/varunest/SparkButton
@@ -293,11 +309,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void onEventAnimationEnd(ImageView button, boolean buttonState) {
-                pauseplay.setDrawingCacheBackgroundColor(getResources().getColor(R.color.spark_image_tint));
-                pauseplay.setBackgroundColor((getResources().getColor(R.color.spark_image_tint)));
-                System.out.println("CHECKKKK2       ");
-
-                //Continue the runnables and the sensorcontrol
+                //Continue the runnables and the sensor control
                 motion = true;
                 handlerFallingObjects4.postDelayed(runnableFallingObjects4, 5);
                 handlerFallingObjects3.postDelayed(runnableFallingObjects3, 5);
@@ -310,14 +322,20 @@ public class MainActivity extends Activity {
                 if(umbrellacovering.getVisibility()==View.VISIBLE){
                     waitFunction(3000, 6);}
 
-                //Make pause button invisible again
+                //Make pause button invisible again and pauseoverlay visible again
                 playpauseButton.setVisibility(View.INVISIBLE);
+                pauseplay.setVisibility(View.VISIBLE);
+
+                //Set Sparkbutton unchecked again
+                //https://github.com/varunest/SparkButton
+                playpauseButton.setChecked(false);
+
             }
 
             @Override
             public void onEventAnimationStart(ImageView button, boolean buttonState) {
             }
-        });*/
+        });
 
 
         //Making Gif appear
@@ -392,7 +410,7 @@ public class MainActivity extends Activity {
                     //When the umbrella is caught, no falling object influences the score for 10 seconds
                     else if (functionCall == 6) {
                         //Let the umbrella over the bitmoji with its smudges disappear again when there is no pause
-                        if(pauseplay.getDrawingCacheBackgroundColor() == getResources().getColor(R.color.spark_image_tint)) {
+                        if(pauseplay.getVisibility()== View.VISIBLE) {
                             umbrellacovering.setVisibility(View.INVISIBLE);
                             vlekplu1.setVisibility(View.INVISIBLE);
                             vlekplu2.setVisibility(View.INVISIBLE);
@@ -863,45 +881,22 @@ public class MainActivity extends Activity {
         }
 
 
-    //Fix buttons pauze
-    //Okay met begin?
     //Make game pause when screen is touched
     public void pauseplay(View view) {
         //Prevent pause when game is over
         if(score <= 0){}
         else {
-            if (pauseplay.getDrawingCacheBackgroundColor() == getResources().getColor(R.color.spark_image_tint)) {
-                System.out.println("CHECKKKK       ");
+            if (pauseplay.getVisibility()==View.VISIBLE){
+                //Make pauseplay disappear to make the Sparkbutton clickable
+                pauseplay.setVisibility(View.INVISIBLE);
+
                 //Let system know pause occurred
                 pauseOption = 1;
                 endOfGame();
-                //Make pause screen appear
-                pauseplay.setDrawingCacheBackgroundColor(getResources().getColor(R.color.colorPause));
-                pauseplay.setBackgroundColor((getResources().getColor(R.color.colorPause)));
 
                 //Make pausebutton appear
-               // playpauseButton.setVisibility(View.VISIBLE);
+                playpauseButton.setVisibility(View.VISIBLE);
             }
-
-             //Make pause screen disappear
-             else {pauseplay.setDrawingCacheBackgroundColor(getResources().getColor(R.color.spark_image_tint));
-                pauseplay.setBackgroundColor((getResources().getColor(R.color.spark_image_tint)));
-                System.out.println("CHECKKKK2       ");
-
-                //Continue the runnables and the sensorcontrol
-                motion = true;
-                handlerFallingObjects4.postDelayed(runnableFallingObjects4, 5);
-                handlerFallingObjects3.postDelayed(runnableFallingObjects3, 5);
-                handlerFallingObjects2.postDelayed(runnableFallingObjects2, 5);
-                handlerFallingObjects.postDelayed(runnableFallingObjects, 5);
-                customHandler.postDelayed(updateTimerThread, 0);
-                handlerScoreTimerDown.postDelayed(runnableScoreTimer, 1);
-
-                //If umbrella is visible continue waitfunction umbrella
-                if(umbrellacovering.getVisibility()==View.VISIBLE){
-                    waitFunction(3000, 6);
-                }
-        }
     }
 
 }

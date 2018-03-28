@@ -10,4 +10,7 @@
     <color name="colorScoreBarBackground">#2b000000</color>
     <color name="colorScoreBar">#ff5b92</color>
     <color name="colorPause">#61000000</color>
+    <color name="colorSparkPause1">#8e8e8e</color>
+    <color name="colorSparkPause2">#e7e7e7</color>
+    <color name="colorBitmoji">#a1000000</color>
 </resources>

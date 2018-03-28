@@ -112,7 +112,30 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/todo"
                 android:scaleType="fitXY"
-                android:src="@drawable/bitmoji" />
+                android:src="@drawable/bitmoji"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/bitmoji2"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/todo"
+                android:scaleType="fitXY"
+                android:src="@drawable/bitmoji2"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/bitmoji3"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/todo"
+                android:scaleType="fitXY"
+                android:src="@drawable/bitmojiempty"
+                android:visibility="invisible"/>
 
             <ImageView
                 android:id="@+id/vlek1"
@@ -217,19 +240,21 @@
                 android:background="@color/spark_image_tint"
                 android:clickable="false"
                 android:onClick="pauseplay"
-                android:visibility="visible"/>
+                android:visibility="visible" />
 
             <com.varunest.sparkbutton.SparkButton
                 android:id="@+id/pausetoplaybutton"
-                android:layout_width="wrap_content"
-                android:layout_height="150dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:alpha="100"
+                android:background="@color/colorPause"
                 android:visibility="invisible"
                 app:sparkbutton_activeImage="@drawable/playbutton"
-                app:sparkbutton_iconSize="80dp"
+                app:sparkbutton_iconSize="50dp"
                 app:sparkbutton_inActiveImage="@drawable/pausebutton"
-                app:sparkbutton_primaryColor="@color/spark_image_tint"
-                app:sparkbutton_secondaryColor="@color/spark_image_tint" />
+                app:sparkbutton_primaryColor="@color/colorSparkPause2"
+                app:sparkbutton_secondaryColor="@color/colorSparkPause1" />
 
         </FrameLayout>
     </LinearLayout>

@@ -21,7 +21,10 @@ allprojects {
         mavenCentral() //gif
         google()
         jcenter()
-        maven { url "https://jitpack.io" } //voor mooie buttons https://github.com/varunest/SparkButton
+        //Make Carousel Choosing Bitmoji possible and making Sparkbuttons possible
+        //Source:https://github.com/varunest/SparkButton
+        //Source:https://www.youtube.com/watch?v=sTJm1Ys9jMI
+        maven { url "https://jitpack.io" }
     }
 }
 

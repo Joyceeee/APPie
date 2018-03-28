@@ -31,6 +31,8 @@ public class OnControlListenerImpl implements SensorControlListener.OnControlLis
             System.out.println("Rollin' babeee jaaaa");
             sensorX=sensorX-x*ROLLING_SPEED;
             ImageView bitmoji1=(ImageView)mainActivity.findViewById(R.id.bitmoji1);
+            ImageView bitmoji2=(ImageView)mainActivity.findViewById(R.id.bitmoji2);
+            ImageView bitmoji3=(ImageView)mainActivity.findViewById(R.id.bitmoji3);
             ImageView umbrellacovering=(ImageView)mainActivity.findViewById(R.id.bitmojiumbrella1);
             ImageView vlek1=(ImageView)mainActivity.findViewById(R.id.vlek1);
             ImageView vlek2=(ImageView)mainActivity.findViewById(R.id.vlek2);
@@ -45,6 +47,8 @@ public class OnControlListenerImpl implements SensorControlListener.OnControlLis
             screenHeight = mainActivity.screenHeight;
             //Set new position bitmoji and cake smudges
             bitmoji1.setX(sensorX);
+            bitmoji2.setX(sensorX);
+            bitmoji3.setX(sensorX);
             vlek1.setX(sensorX);
             vlek2.setX(sensorX);
 

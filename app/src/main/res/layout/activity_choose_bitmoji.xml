@@ -6,4 +6,95 @@
     android:layout_height="match_parent"
     tools:context="nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie.ChooseBitmoji">
 
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/todo"
+        android:gravity="center_vertical"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mooigrijsisnietlelijk" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/titelbar"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/todo"
+                android:gravity="center_vertical"
+                android:scaleType="centerCrop"
+                android:src="@drawable/mooirozeisnietlelijk" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:contentDescription="@string/todo"
+                android:gravity="center_horizontal"
+                android:src="@drawable/appietekst" />
+
+        </FrameLayout>
+
+
+       <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="33dp"
+            android:paddingTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/textchoosebitmoji"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--
+            Creating a carousel viewer
+            Source:https://www.youtube.com/watch?v=sTJm1Ys9jMI
+            -->
+            <com.gigamole.infinitecycleviewpager.VerticalInfiniteCycleViewPager
+                android:id="@+id/vertical_cycle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="33dp"
+                app:icvp_interpolator="@android:anim/accelerate_decelerate_interpolator"
+                app:icvp_scroll_duration="400"
+                app:icvp_center_page_scale_offset="10dp"
+                app:icvp_min_page_scale="0.25"
+                app:icvp_max_page_scale="0.6"
+                app:icvp_min_page_scale_offset="20dp"
+                app:icvp_medium_scaled="false" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="33dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:scaleType="fitXY"
+                android:src="@drawable/startbalk" />
+
+           <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/starttext"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
+                android:clickable="true"
+                android:onClick="clickStart"
+                android:layout_gravity="bottom|center_horizontal"
+                android:background="@android:color/transparent"
+                android:src="@drawable/startbalk" />
+        </FrameLayout>
+
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
