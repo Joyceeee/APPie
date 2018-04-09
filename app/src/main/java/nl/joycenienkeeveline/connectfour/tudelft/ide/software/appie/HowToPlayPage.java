@@ -46,11 +46,16 @@ public class HowToPlayPage extends Activity {
         //this.gDetector = new GestureDetectorCompat(this, this);
         //gDetector.setOnDoubleTapListener(this);
         setContentView(R.layout.activity_how_to_play_page);
+
     }
 
-    public void howtoNextPage(View view) { setContentView(R.layout.activity_how_to_play_page2); }
+    public void howtoNextPage(View view) {setContentView(R.layout.activity_how_to_play_page2);}
 
-    public void howtoNextPage2(View view) { setContentView(R.layout.activity_how_to_play_page3); }
+    public void howtoNextPage2(View view) {setContentView(R.layout.activity_how_to_play_page_bitmoji);}
+
+    public void howtoNextPageBit(View view) {setContentView(R.layout.activity_how_to_play_page_pause);}
+
+    public void howtoNextPagePause(View view) { setContentView(R.layout.activity_how_to_play_page3); }
 
     public void howtoNextPage3(View view) {
         setContentView(R.layout.activity_how_to_play_page4);

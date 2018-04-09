@@ -56,7 +56,7 @@
             android:layout_height="15dp"
             android:layout_marginTop="60dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/rondjegevuld"/>
+            android:src="@drawable/rondjewit"/>
 
         <ImageView
             android:id="@+id/dot2"
@@ -64,7 +64,7 @@
             android:layout_height="15dp"
             android:layout_marginTop="60dp"
             android:layout_toEndOf="@+id/dot1"
-            android:src="@drawable/rondjewit"/>
+            android:src="@drawable/rondjegevuld"/>
 
         <ImageView
             android:id="@+id/dot3"
@@ -80,6 +80,14 @@
             android:layout_height="15dp"
             android:layout_marginTop="60dp"
             android:layout_toEndOf="@+id/dot3"
+            android:src="@drawable/rondjewit"/>
+
+        <ImageView
+            android:id="@+id/dot9"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="60dp"
+            android:layout_toEndOf="@+id/dot4"
             android:src="@drawable/rondjewit"/>
 
         <ImageView
@@ -104,6 +112,14 @@
             android:layout_height="15dp"
             android:layout_marginTop="60dp"
             android:layout_toStartOf="@+id/dot6"
+            android:src="@drawable/rondjewit"/>
+
+        <ImageView
+            android:id="@+id/dot8"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="60dp"
+            android:layout_toStartOf="@+id/dot7"
             android:src="@drawable/rondjewit"/>
 
 

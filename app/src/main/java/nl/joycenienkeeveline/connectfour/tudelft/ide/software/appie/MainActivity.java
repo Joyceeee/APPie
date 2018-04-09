@@ -448,8 +448,12 @@ public class MainActivity extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                MainActivity.this.startActivity(new Intent(MainActivity.this, GameOver.class));
-                MainActivity.this.finish();
+                //MainActivity.this.startActivity(new Intent(MainActivity.this, GameOver.class));
+                //MainActivity.this.finish();
+                Intent intent = new Intent();
+                intent.putExtra("ScoreAtGameOver", timer.getText().toString());
+                intent.setClass(MainActivity.this, GameOver.class);
+                startActivity(intent);
             }
         },2500);
     }

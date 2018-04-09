@@ -83,6 +83,14 @@
             android:src="@drawable/rondjewit"/>
 
         <ImageView
+            android:id="@+id/dot9"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="60dp"
+            android:layout_toEndOf="@+id/dot4"
+            android:src="@drawable/rondjewit"/>
+
+        <ImageView
             android:id="@+id/dot5"
             android:layout_width="15dp"
             android:layout_height="15dp"
@@ -96,7 +104,7 @@
             android:layout_height="15dp"
             android:layout_marginTop="60dp"
             android:layout_toStartOf="@+id/dot5"
-            android:src="@drawable/rondjegevuld"/>
+            android:src="@drawable/rondjewit"/>
 
         <ImageView
             android:id="@+id/dot7"
@@ -104,6 +112,14 @@
             android:layout_height="15dp"
             android:layout_marginTop="60dp"
             android:layout_toStartOf="@+id/dot6"
+            android:src="@drawable/rondjegevuld"/>
+
+        <ImageView
+            android:id="@+id/dot8"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="60dp"
+            android:layout_toStartOf="@+id/dot7"
             android:src="@drawable/rondjewit"/>
 
 

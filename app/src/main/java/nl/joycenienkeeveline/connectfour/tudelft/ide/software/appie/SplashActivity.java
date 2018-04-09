@@ -2,22 +2,15 @@ package nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
-
 import com.felipecsl.gifimageview.library.GifImageView;
-
 import org.apache.commons.io.IOUtils;
-
 import java.io.IOException;
 import java.io.InputStream;
-
-//import pl.droidsonroids.gif.GifImageView;
 
 public class SplashActivity extends Activity {
 
@@ -45,8 +38,7 @@ public class SplashActivity extends Activity {
             gifImageView.setBytes(bytes);
             gifImageView.startAnimation();
         }
-        catch (IOException ex)
-        {
+        catch (IOException ex) {
 
         }
 

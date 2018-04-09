@@ -65,6 +65,18 @@
             android:layout_centerVertical="true"
             android:src="@drawable/yourname"/>
 
+        <AutoCompleteTextView
+            android:id="@+id/namePlayer"
+            android:layout_width="140dp"
+            android:layout_height="30dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_alignEnd="@+id/yourname"
+            android:layout_alignBottom="@+id/yourname"
+            android:layout_marginBottom="2dp"
+            android:background="@android:color/transparent"
+            android:hint="@string/APPier"/>
+
 
         <ImageView
             android:id="@+id/playagain"
@@ -105,6 +117,16 @@
             android:layout_marginTop="-80dp"
             android:src="@drawable/yourscore"/>
 
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="140dp"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@+id/yourscore"
+            android:layout_alignEnd="@+id/yourscore"
+            android:textColor="@color/colorBlack"
+            android:textSize="20sp"
+            android:text="@string/_00_00_00"/>
+
 
         <ImageView
             android:id="@+id/highscore"
@@ -115,9 +137,38 @@
             android:layout_marginTop="-40dp"
             android:src="@drawable/highscore"/>
 
+        <TextView
+            android:id="@+id/highestscore"
+            android:layout_width="140dp"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@+id/highscore"
+            android:layout_alignEnd="@+id/highscore"
+            android:textColor="@color/colorBlack"
+            android:textSize="20sp"
+            android:text="@string/High_Score"
+            />
 
+        <ImageView
+            android:id="@+id/savebtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignBottom="@+id/namePlayer"
+            android:layout_alignEnd="@+id/taptochange"
+            android:layout_marginBottom="4dp"
+            android:onClick="onClickSave"
+            android:src="@drawable/saveklein" />
 
-
+        <TextView
+            android:id="@+id/proberen"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@+id/taptochange"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="8dp"
+            android:text="@string/Saved"
+            android:textSize="20sp"
+            android:visibility="invisible"
+             />
 
     </RelativeLayout>
 

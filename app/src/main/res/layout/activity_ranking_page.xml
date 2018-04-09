@@ -10,7 +10,6 @@
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/todo"
         android:gravity="center_vertical"
         android:scaleType="centerCrop"
         android:src="@drawable/mooigrijsisnietlelijk" />
@@ -42,6 +41,389 @@
                 android:src="@drawable/appietekst" />
 
         </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <ImageView
+                android:id="@+id/titelranking"
+                android:layout_width="120dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:src="@drawable/titelranking" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+            <ImageView
+                android:id="@+id/titelbalkranking"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/titelbalkranking" />
+
+            <ImageView
+                android:id="@+id/playerraking"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="30dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/playerranking" />
+
+            <ImageView
+                android:id="@+id/timeranking"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="240dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/timeranking" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/lichtebalk1"
+                android:layout_width="fill_parent"
+                android:layout_height="42dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/lichtebalkranking"
+                />
+            <TextView
+                android:id="@+id/firstplaceName"
+                android:layout_width="220dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_vertical"
+                android:text="@string/name"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/firstplaceScore"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="250dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_vertical"
+                android:text="@string/score"
+                android:textSize="20sp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/donkerebalk2"
+                android:layout_width="fill_parent"
+                android:layout_height="42dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/donkerebalkranking" />
+
+            <TextView
+                android:id="@+id/secondplaceName"
+                android:layout_width="220dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_vertical"
+                android:text="@string/name"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/secondplaceScore"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="250dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_vertical"
+                android:text="@string/score"
+                android:textSize="20sp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/lichtebalk3"
+                android:scaleType="centerCrop"
+                android:layout_width="fill_parent"
+                android:layout_height="42dp"
+                android:src="@drawable/lichtebalkranking"
+                />
+
+            <TextView
+                android:id="@+id/thirdplaceName"
+                android:layout_width="220dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_vertical"
+                android:text="@string/name"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/thirdplaceScore"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="250dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_vertical"
+                android:text="@string/score"
+                android:textSize="20sp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/donkerebalk4"
+                android:scaleType="centerCrop"
+                android:layout_width="fill_parent"
+                android:layout_height="42dp"
+                android:src="@drawable/donkerebalkranking" />
+
+            <TextView
+                android:id="@+id/fourthplaceName"
+                android:layout_width="220dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_vertical"
+                android:text="@string/name"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/fourthplaceScore"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="250dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_vertical"
+                android:text="@string/score"
+                android:textSize="20sp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/lichtebalk5"
+                android:layout_width="fill_parent"
+                android:scaleType="centerCrop"
+                android:layout_height="42dp"
+                android:src="@drawable/lichtebalkranking"
+                />
+
+            <TextView
+                android:id="@+id/fifthplaceName"
+                android:layout_width="220dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/colorBlack"
+                android:text="@string/name"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/fifthplaceScore"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="250dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_vertical"
+                android:text="@string/score"
+                android:textSize="20sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/donkerebalk6"
+                android:layout_width="fill_parent"
+                android:scaleType="centerCrop"
+                android:layout_height="42dp"
+                android:src="@drawable/donkerebalkranking" />
+
+            <TextView
+                android:id="@+id/sixthplaceName"
+                android:layout_width="220dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_vertical"
+                android:text="@string/name"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/sixthplaceScore"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="250dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_vertical"
+                android:text="@string/score"
+                android:textSize="20sp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/lichtebalk7"
+                android:layout_width="fill_parent"
+                android:scaleType="centerCrop"
+                android:layout_height="42dp"
+                android:src="@drawable/lichtebalkranking" />
+
+            <TextView
+                android:id="@+id/seventhplaceName"
+                android:layout_width="220dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_vertical"
+                android:text="@string/name"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/seventhplaceScore"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="250dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_vertical"
+                android:text="@string/score"
+                android:textSize="20sp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/donkerebalk8"
+                android:layout_width="fill_parent"
+                android:scaleType="centerCrop"
+                android:layout_height="42dp"
+                android:src="@drawable/donkerebalkranking"
+                />
+
+            <TextView
+                android:id="@+id/eighthplaceName"
+                android:layout_width="220dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_vertical"
+                android:text="@string/name"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/eighthplaceScore"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="250dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_vertical"
+                android:text="@string/score"
+                android:textSize="20sp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/lichtebalk9"
+                android:layout_width="fill_parent"
+                android:scaleType="centerCrop"
+                android:layout_height="42dp"
+                android:src="@drawable/lichtebalkranking" />
+
+            <TextView
+                android:id="@+id/ninethplaceName"
+                android:layout_width="220dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_vertical"
+                android:text="@string/name"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/ninethplaceScore"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="250dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_vertical"
+                android:text="@string/score"
+                android:textSize="20sp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/donkerebalk10"
+                android:layout_width="fill_parent"
+                android:scaleType="centerCrop"
+                android:layout_height="42dp"
+                android:src="@drawable/donkerebalkranking"
+                />
+
+            <TextView
+                android:id="@+id/tenthplaceName"
+                android:layout_width="220dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_vertical"
+                android:text="@string/name"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tenthplaceScore"
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="250dp"
+                android:textColor="@color/colorBlack"
+                android:layout_gravity="center_vertical"
+                android:text="@string/score"
+                android:textSize="20sp" />
+
+        </FrameLayout>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/cupcakeranking" />
+
     </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>
