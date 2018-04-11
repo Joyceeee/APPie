@@ -28,12 +28,12 @@ public class SplashActivity extends Activity {
 
         setContentView(R.layout.activity_splash);
 
-        gifImageView =(GifImageView)findViewById(R.id.gifImageView);
+        gifImageView =(GifImageView)findViewById(R.id.gifImageView2);
         progressBar=(ProgressBar)findViewById(R.id.progressBar);
         progressBar.setVisibility(progressBar.VISIBLE);
 
         try{
-            InputStream inputStream = getAssets().open("dancingcupcake.gif");
+            InputStream inputStream = getAssets().open("dancingcupcake2.gif");
             byte [] bytes = IOUtils.toByteArray(inputStream);
             gifImageView.setBytes(bytes);
             gifImageView.startAnimation();

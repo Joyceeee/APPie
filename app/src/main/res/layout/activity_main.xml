@@ -16,7 +16,7 @@
         android:contentDescription="@string/todo"
         android:gravity="center_vertical"
         android:scaleType="centerCrop"
-        android:src="@drawable/mooigrijsisnietlelijk"
+        android:src="@drawable/background"
         android:keepScreenOn="true"/>
 
     <LinearLayout
@@ -35,7 +35,7 @@
                 android:contentDescription="@string/todo"
                 android:gravity="center_vertical"
                 android:scaleType="centerCrop"
-                android:src="@drawable/mooirozeisnietlelijk" />
+                android:src="@drawable/header" />
 
             <ImageView
                 android:layout_width="match_parent"
@@ -104,6 +104,131 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/sponge" />
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:id="@+id/covergame"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/background"
+                    android:visibility="invisible"/>
+
+                <ImageView
+                    android:id="@+id/photogallery"
+                    android:layout_width="185dp"
+                    android:layout_height="250dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="150dp"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/photogallerybitmoji"
+                    android:layout_width="55dp"
+                    android:layout_height="72dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="23dp"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/photocoverman"
+                    android:layout_width="370dp"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/btn_framebuttonpicture"
+                    android:layout_centerHorizontal="true"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/keuzeman"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/photocoverwoman"
+                    android:layout_width="370dp"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/btn_framebuttonpicture"
+                    android:layout_centerHorizontal="true"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/keuzevrouw"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/btn_framebuttonpicture"
+                    android:layout_width="fill_parent"
+                    android:layout_height="72dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/todo"
+                    android:gravity="center_vertical"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/header"
+                    android:layout_alignParentBottom="true"
+                    android:visibility="invisible"/>
+
+                <ImageView
+                    android:id="@+id/redo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignRight="@+id/btn_boundary"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="14dp"
+                    android:src="@drawable/redo"
+                    android:visibility="invisible"/>
+
+                <ImageView
+                    android:id="@+id/confirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="43dp"
+                    android:layout_alignLeft="@+id/btn_boundary"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="14dp"
+                    android:src="@drawable/confirm"
+                    android:visibility="invisible"/>
+
+                <Button
+                    android:id="@+id/btn_boundary"
+                    android:layout_width="1dp"
+                    android:layout_height="72dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:visibility="invisible"/>
+
+                <Button
+                    android:id="@+id/btn_confirmpicture"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:layout_alignLeft="@+id/btn_boundary"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="right"
+                    android:clickable="true"
+                    android:onClick="confirm"
+                    android:background="@android:color/transparent"
+                    android:visibility="invisible"/>
+
+                <Button
+                    android:id="@+id/btn_retakepicture"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignRight="@+id/btn_boundary"
+                    android:layout_gravity="left"
+                    android:clickable="true"
+                    android:onClick="retake"
+                    android:background="@android:color/transparent"
+                    android:visibility="invisible"/>
+
+            </RelativeLayout>
+
+
             <ImageView
                 android:id="@+id/bitmoji1"
                 android:layout_width="100dp"
@@ -112,7 +237,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/todo"
                 android:scaleType="fitXY"
-                android:src="@drawable/bitmoji"
+                android:src="@drawable/bitmojiman"
                 android:visibility="invisible"/>
 
             <ImageView
@@ -123,19 +248,30 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/todo"
                 android:scaleType="fitXY"
-                android:src="@drawable/bitmoji2"
+                android:src="@drawable/bitmojiwoman"
                 android:visibility="invisible"/>
 
             <ImageView
                 android:id="@+id/bitmoji3"
-                android:layout_width="100dp"
+                android:layout_width="107dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/todo"
                 android:scaleType="fitXY"
-                android:src="@drawable/bitmojiempty"
-                android:visibility="invisible"/>
+                android:src="@drawable/keuzevrouw"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/bitmoji4"
+                android:layout_width="107dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/todo"
+                android:scaleType="fitXY"
+                android:src="@drawable/keuzeman"
+                android:visibility="invisible" />
 
             <ImageView
                 android:id="@+id/vlek1"
@@ -161,52 +297,39 @@
 
             <ImageView
             android:id="@+id/bitmojiumbrella1"
-            android:layout_width="110dp"
+            android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:adjustViewBounds="true"
             android:contentDescription="@string/todo"
-            android:paddingBottom="9dp"
+            android:paddingBottom="11dp"
             android:scaleType="fitXY"
             android:src="@drawable/umbrellacovering"
             android:visibility="invisible" />
 
             <ImageView
                 android:id="@+id/vlekplu1"
-                android:layout_width="110dp"
+                android:layout_width="115dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/todo"
-                android:paddingBottom="9dp"
+                android:paddingBottom="11dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/vlekplu1"
                 android:visibility="invisible" />
 
             <ImageView
                 android:id="@+id/vlekplu2"
-                android:layout_width="110dp"
+                android:layout_width="115dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/todo"
-                android:paddingBottom="9dp"
+                android:paddingBottom="11dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/vlekplu2"
                 android:visibility="invisible" />
-
-            <!--
-            DELETE
-            <TextView
-                android:id="@+id/scoreLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical|end"
-                android:layout_marginTop="130dp"
-                android:text="0000"
-                android:textColor="@color/colortimer"
-                android:textSize="60sp" />
-                -->
 
             <!--Making score bar with waves
             Source: https://www.youtube.com/watch?v=7d-IWhjxXIA-->
@@ -216,6 +339,7 @@
                 android:layout_height="400dp"
                 android:layout_gravity="center_vertical|right"
                 android:layout_marginRight="10dp"
+                android:visibility="invisible"
                 app:wlv_borderColor="@color/colorAccent"
                 app:wlv_borderWidth="3dp"
                 app:wlv_round_rectangle="true"
@@ -226,12 +350,48 @@
                 app:wlv_waveColor="@color/colorScoreBar"
                 app:wlv_wave_background_Color="@color/colorScoreBarBackground" />
 
+            <ImageView
+                android:id="@+id/een"
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:src="@drawable/een"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/twee"
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:src="@drawable/twee"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/drie"
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:src="@drawable/drie"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/start"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:src="@drawable/start"
+                android:visibility="invisible" />
+<!--
             <com.felipecsl.gifimageview.library.GifImageView
                 android:id="@+id/gifImageViewGame"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitCenter"
-                android:visibility="visible" />
+                android:visibility="visible" /> -->
 
             <Button
                 android:id="@+id/pauseplay"

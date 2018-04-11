@@ -1,30 +1,20 @@
 package nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Point;
-import android.os.Handler;
-import android.provider.ContactsContract;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.Display;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.*;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
+//Import Sparkbuttons
 import com.varunest.sparkbutton.SparkButton;
 import com.varunest.sparkbutton.SparkEventListener;
 
-// extends Activity instead of AppCompatActivity to remove title bar.
+//Extend Activity instead of AppCompatActivity to remove title bar.
 public class MainMenu extends Activity {
 
     //Initialise screen size

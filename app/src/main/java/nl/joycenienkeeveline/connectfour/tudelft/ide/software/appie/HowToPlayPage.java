@@ -1,36 +1,19 @@
 package nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
-//import android.support.v4.view.GestureDetectorCompat;
 import android.os.Bundle;
-//import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-//import android.widget.Toast;
-//import android.content.Context;
-
-
-
-
 
 public class HowToPlayPage extends Activity {
-    //private GestureDetectorCompat gDetector;
-
 
     //When back button device is pressed return to menu
     @Override
     public void onBackPressed(){
         super.onBackPressed();
-
-        Intent intent = new Intent(this,
-                MainMenu.class);
+        Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
     }
 
@@ -43,46 +26,36 @@ public class HowToPlayPage extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        //this.gDetector = new GestureDetectorCompat(this, this);
-        //gDetector.setOnDoubleTapListener(this);
         setContentView(R.layout.activity_how_to_play_page);
 
     }
 
-    public void howtoNextPage(View view) {setContentView(R.layout.activity_how_to_play_page2);}
-
-    public void howtoNextPage2(View view) {setContentView(R.layout.activity_how_to_play_page_bitmoji);}
-
-    public void howtoNextPageBit(View view) {setContentView(R.layout.activity_how_to_play_page_pause);}
-
-    public void howtoNextPagePause(View view) { setContentView(R.layout.activity_how_to_play_page3); }
-
-    public void howtoNextPage3(View view) {
-        setContentView(R.layout.activity_how_to_play_page4);
-    }
-
-    public void howtoNextPage4(View view) {
-        setContentView(R.layout.activity_how_to_play_page5);
-    }
-
-    public void howtoNextPage5(View view) {
-        setContentView(R.layout.activity_how_to_play_page6);
-    }
-
-    public void howtoNextPage6(View view) {
-        setContentView(R.layout.activity_how_to_play_page7);
-    }
-
+    //Go to next layout when forward button is pressed
+    public void howtoNextPage(View view) { setContentView(R.layout.activity_how_to_play_page2); }
+    public void howtoNextPage2(View view) {setContentView(R.layout.activity_how_to_play_page_pause);}
+    public void howtoNextPageBit(View view) {setContentView(R.layout.activity_how_to_play_page3);}
+    public void howtoNextPagePause(View view) { setContentView(R.layout.activity_how_to_play_page_bitmoji); }
+    public void howtoNextPage3(View view) {setContentView(R.layout.activity_how_to_play_page4);}
+    public void howtoNextPage4(View view) {setContentView(R.layout.activity_how_to_play_page5);}
+    public void howtoNextPage5(View view) {setContentView(R.layout.activity_how_to_play_page6);}
+    public void howtoNextPage6(View view) {setContentView(R.layout.activity_how_to_play_page7);}
     public void howtoNextPage7(View view) {
         HowToPlayPage.this.startActivity(new Intent(HowToPlayPage.this, MainMenu.class));
-        HowToPlayPage.this.finish();
+        HowToPlayPage.this.finish();}
+
+    //Go to previous layout when back button is pressed
+    public void howtoPreviousPage(View view) {
+        HowToPlayPage.this.startActivity(new Intent(HowToPlayPage.this, MainMenu.class));
+        HowToPlayPage.this.finish();}
+    public void howtoPreviousPage2(View view) {setContentView(R.layout.activity_how_to_play_page);}
+    public void howtoPreviousBit(View view) {setContentView(R.layout.activity_how_to_play_page_pause);}
+    public void howtoPreviousPause(View view) {setContentView(R.layout.activity_how_to_play_page2);}
+    public void howtoPreviousPage3(View view) {setContentView(R.layout.activity_how_to_play_page_bitmoji);}
+    public void howtoPreviousPage4(View view) {setContentView(R.layout.activity_how_to_play_page3);}
+    public void howtoPreviousPage5(View view) {setContentView(R.layout.activity_how_to_play_page4);}
+    public void howtoPreviousPage6(View view) {setContentView(R.layout.activity_how_to_play_page5);}
+    public void howtoPreviousPage7(View view) {setContentView(R.layout.activity_how_to_play_page6);
     }
-
-
-    //}
-
-
-
 
 }
 

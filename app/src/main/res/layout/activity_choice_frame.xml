@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie.ChoiceFrameActivity">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/todo"
+        android:gravity="center_vertical"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/titelbar"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/todo"
+                android:gravity="center_vertical"
+                android:scaleType="centerCrop"
+                android:src="@drawable/header" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:contentDescription="@string/todo"
+                android:gravity="center_horizontal"
+                android:src="@drawable/appietekst" />
+
+        </FrameLayout>
+
+<!--
+PICK YOUR FRAME
+-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/pickaframe"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/choosephoto" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_above="@+id/btn_boundary"
+                android:layout_below="@+id/pickaframe"
+                android:layout_alignRight="@+id/btn_boundary"
+                android:layout_gravity="center"
+                android:src="@drawable/keuzemanvague" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_above="@+id/btn_boundary"
+                android:layout_below="@+id/pickaframe"
+                android:layout_alignLeft="@+id/btn_boundary"
+                android:layout_gravity="center"
+                android:src="@drawable/keuzevrouwvague" />
+
+            <ImageView
+                android:id="@+id/man_frame"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_above="@+id/btn_boundary"
+                android:layout_below="@+id/pickaframe"
+                android:layout_alignRight="@+id/btn_boundary"
+                android:layout_gravity="center"
+                android:src="@drawable/keuzeman"
+                android:visibility="visible"/>
+
+            <ImageView
+                android:id="@+id/woman_frame"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_above="@+id/btn_boundary"
+                android:layout_below="@+id/pickaframe"
+                android:layout_alignLeft="@+id/btn_boundary"
+                android:layout_gravity="center"
+                android:src="@drawable/keuzevrouw"
+                android:visibility="invisible"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/btn_boundary"
+                android:layout_alignRight="@+id/btn_boundary"
+                android:layout_below="@+id/pickaframe"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:onClick="manSelected"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/btn_boundary"
+                android:layout_alignLeft="@+id/btn_boundary"
+                android:layout_below="@+id/pickaframe"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:onClick="womanSelected"/>
+
+            <Button
+                android:id="@+id/btn_boundary"
+                android:layout_width="1dp"
+                android:layout_height="33dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/transparent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="33dp"
+                android:layout_alignParentBottom="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/startbalk" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/upload" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
+                android:clickable="true"
+                android:onClick="clickStartGame"
+                android:layout_alignParentBottom="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/startbalk" />
+        </RelativeLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

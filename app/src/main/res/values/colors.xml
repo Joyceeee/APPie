@@ -14,4 +14,5 @@
     <color name="colorSparkPause1">#8e8e8e</color>
     <color name="colorSparkPause2">#e7e7e7</color>
     <color name="colorBitmoji">#a1000000</color>
+    <color name="backgroundSplashScreen">#848ac9</color>
 </resources>

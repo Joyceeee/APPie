@@ -1,46 +1,22 @@
 package nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie;
 
-/*DOEN:
-ERGENS AANGEVEN OF HIER OF IN VERSLAG WAT ER ALLEMAAL INSTELBAAR IS:
-COLLISION BEREIK
-SNELHEID OBJECTS
-INTRO OBJECTS
-GROOTTE OBJECTS
-TIJDVERSNELLING
-PUNTEN OPTEL/AFTREK
-ERGENS VERMELDEN DAT SCHERM NIET UITGAAT TIJDENS GAME
-
-
-FIXEN ctrl F FIX
-Fixen gif
-
-Pauze?
-Code in klassen
-
-Methogs in klassen opdelen
-
-UITLEG OVERAL BIJ
-delete system.out.println
-*/
-
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
-import android.media.Image;
-import android.media.SoundPool;
-import android.opengl.Visibility;
+import android.net.Uri;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.os.Vibrator;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -49,16 +25,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.view.*;
 import android.os.Handler;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.felipecsl.gifimageview.library.GifImageView;
-
-import org.apache.commons.io.IOUtils;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
@@ -77,10 +47,10 @@ public class MainActivity extends Activity {
     //Initialising the GUI elements
     //Source: https://coding-with-sara.thinkific.com/courses/take/catch-the-ball-android-studio-game-tutorial/lessons/1510621-3-findviewbyid-ontouchevent
     private TextView timer;
-    //DELETE private TextView scoreLabel;
     private ImageView bitmoji1;
     private ImageView bitmoji2;
     private ImageView bitmoji3;
+    private ImageView bitmoji4;
     private ImageView umbrellacovering;
     private ImageView vlek1;
     private ImageView vlek2;
@@ -90,9 +60,30 @@ public class MainActivity extends Activity {
     private ImageView cake2;
     private ImageView umbrella;
     private ImageView sponge;
+    private ImageView photoGallery;
+    private ImageView photoGalleryBitmoji;
+    private ImageView covergame;
+    private ImageView photocoverman;
+    private ImageView photocoverwoman;
+    private ImageView framebuttonpicture;
+    private ImageView confirm;
+    private ImageView redo;
+    private Button boundary;
+    private Button confirmpicture;
+    private Button retakepicture;
     private Button pauseplay;
     private SparkButton playpauseButton;
-    private GifImageView gifImageViewGame;
+
+    //Initialise UI elements countdown
+    //private GifImageView gifImageViewGame;
+    private ImageView one;
+    private ImageView two;
+    private ImageView three;
+    private ImageView start;
+
+    //Initialise elements to be able to import photos from gallery
+    Uri uri;
+    Intent GalIntent, CropIntent ;
 
     //Initialising size screen
     public int screenWidth;
@@ -108,9 +99,6 @@ public class MainActivity extends Activity {
     private int umbrellax;
     private int umbrellay;
 
-    //Timer Check -_DELETE
-    private long check;
-
     //Timer
     //Source: http://en.proft.me/2017/11/18/how-create-count-timer-android/
     long startTime, timeInMilliseconds = 0;
@@ -125,7 +113,6 @@ public class MainActivity extends Activity {
     private int umbrellaFactor = 1;
     WaveLoadingView waveLoadingView;
     int updateScore=0;
-    // COLORFIX int colorStart;
 
     //Set colors score bar
     int colorScore5 = 0xFFFF4081;
@@ -145,7 +132,7 @@ public class MainActivity extends Activity {
     //Source: Workshop Four in a row Software
     private SensorControlListener sensorControlListener=new SensorControlListener();
     private OnControlListenerImpl onControlListenerImpl=new OnControlListenerImpl(this);
-    public boolean motion=true;
+    public boolean motion=false;
     public boolean getMotion() { return motion; }
 
     //Sounds when collision
@@ -154,8 +141,10 @@ public class MainActivity extends Activity {
     private int dataStoreSound;
 
     //Getting right bitmoji
+    private int selectedframe;
     private int valueBitmojiSelected;
     private int bitmojiToImplement;
+    private int bitmojiToImplementOwnPhoto;
 
     //Getting level difficulty
     private int increasementDifficulty;
@@ -164,6 +153,7 @@ public class MainActivity extends Activity {
 
     //Initialise check if onPause occurred or not
     private boolean onBackButtonDevice=false;
+    private int checkGalleryOpen;
 
     //Initialise check if Pause option occurred or not
     private int pauseOption;
@@ -180,8 +170,7 @@ public class MainActivity extends Activity {
 
         //If onPause occurred, go to Menu page when returning
         if(onBackButtonDevice == true){
-            Intent intent = new Intent(this,
-                    MainMenu.class);
+            Intent intent = new Intent(this, MainMenu.class);
             startActivity(intent);
             finish();
         }
@@ -192,21 +181,20 @@ public class MainActivity extends Activity {
         SensorManager sensorManager=(SensorManager)getSystemService(Context.SENSOR_SERVICE);
         sensorManager.unregisterListener(sensorControlListener);
 
-        //Make runnables stop when game is left and return to the menu page
-        score = 0;
-        endOfGame();
+        if (checkGalleryOpen==0){
+            //Make runnables stop when game is left and return to the menu page
+            score = 0;
+            endOfGame();
 
-        //Give a sign that onPause occurred
-        onBackButtonDevice=true;
+            //Give a sign that onPause occurred
+            onBackButtonDevice=true;}
     }
 
     //When back button device is pressed return to menu
     @Override
     public void onBackPressed(){
         super.onBackPressed();
-
-        Intent intent = new Intent(this,
-                MainMenu.class);
+        Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
     }
 
@@ -234,6 +222,7 @@ public class MainActivity extends Activity {
         bitmoji1 = (ImageView)findViewById(R.id.bitmoji1);
         bitmoji2 = (ImageView)findViewById(R.id.bitmoji2);
         bitmoji3 = (ImageView)findViewById(R.id.bitmoji3);
+        bitmoji4 = (ImageView)findViewById(R.id.bitmoji4);
         umbrellacovering = (ImageView)findViewById(R.id.bitmojiumbrella1);
         vlek1 = (ImageView)findViewById(R.id.vlek1);
         vlek2 = (ImageView)findViewById(R.id.vlek2);
@@ -244,9 +233,20 @@ public class MainActivity extends Activity {
         umbrella = (ImageView)findViewById(R.id.umbrella);
         sponge = (ImageView)findViewById(R.id.sponge);
         pauseplay = (Button)findViewById(R.id.pauseplay);
+        one = (ImageView)findViewById(R.id.een);
+        two = (ImageView)findViewById(R.id.twee);
+        three = (ImageView)findViewById(R.id.drie);
+        start = (ImageView)findViewById(R.id.start);
+        covergame = (ImageView)findViewById(R.id.covergame);
+        photocoverman = (ImageView)findViewById(R.id.photocoverman);
+        photocoverwoman = (ImageView)findViewById(R.id.photocoverwoman);
+        framebuttonpicture = (ImageView)findViewById(R.id.btn_framebuttonpicture);
+        confirm = (ImageView)findViewById(R.id.confirm);
+        redo = (ImageView)findViewById(R.id.redo);
+        boundary = (Button)findViewById(R.id.btn_boundary);
+        confirmpicture = (Button)findViewById(R.id.btn_confirmpicture);
+        retakepicture= (Button)findViewById(R.id.btn_retakepicture);
         playpauseButton = (SparkButton) findViewById(R.id.pausetoplaybutton);
-        gifImageViewGame =(GifImageView)findViewById(R.id.gifImageViewGame);
-        //DELETE scoreLabel = (TextView)findViewById(R.id.scoreLabel);
         waveLoadingView = (WaveLoadingView)findViewById(R.id.waveLoadingView);
         waveLoadingView.setProgressValue(100);
 
@@ -268,10 +268,11 @@ public class MainActivity extends Activity {
 
         //Check which bitmoji to implement and make the right one visible
         SharedPreferences preferences2 = getSharedPreferences("bitmoji_settings",MODE_PRIVATE);
-        bitmojiToImplement = preferences.getInt("bitmoji", valueBitmojiSelected);
-        if(valueBitmojiSelected==0){bitmoji1.setVisibility(View.VISIBLE);}
-        if(valueBitmojiSelected==1){bitmoji2.setVisibility(View.VISIBLE);}
-        if(valueBitmojiSelected==2){bitmoji3.setVisibility(View.VISIBLE);}
+        SharedPreferences preferences3 = getSharedPreferences("bitmoji_frame",MODE_PRIVATE);
+        bitmojiToImplement = preferences2.getInt("bitmoji", valueBitmojiSelected);
+        bitmojiToImplementOwnPhoto = preferences3.getInt("frame",selectedframe);
+        if(bitmojiToImplement==0){bitmoji1.setVisibility(View.VISIBLE);}
+        if(bitmojiToImplement==1){bitmoji2.setVisibility(View.VISIBLE);}
 
         //Check which level of difficulty is wanted
         //Get last value for level difficulty
@@ -286,7 +287,7 @@ public class MainActivity extends Activity {
         if(advancedValue==3){increasementDifficulty=10;}
         if(advancedValue==4){increasementDifficulty=15;}
 
-        //Move falling objects out of screen --> FIXEN WANT NOG NIET OP MOBIEL GOED
+        //Move falling objects out of screen
         cake1.setX(screenWidth);
         cake1.setY(screenHeight);
         cake2.setX(screenWidth);
@@ -295,9 +296,6 @@ public class MainActivity extends Activity {
         sponge.setY(screenHeight);
         umbrella.setX(screenWidth);
         umbrella.setY(screenHeight);
-
-        //Receive color of Score Bar
-        //COLORFIX colorStart = waveLoadingView.getWaveColor();
 
         //Make continue game possible after pause
         //Source: https://www.programcreek.com/java-api-examples/?code=varunest/SparkButton/SparkButton-master/sparkbutton/src/main/java/com/varunest/sparkbutton/SparkEventListener.java#
@@ -337,29 +335,112 @@ public class MainActivity extends Activity {
             }
         });
 
+        //When chosen for own picture, pick image from gallery and crop to right dimensions
+        if(bitmojiToImplement==2){
+            //Make other UI elements visible
+            covergame.setVisibility(View.VISIBLE);
+            framebuttonpicture.setVisibility(View.VISIBLE);
+            confirm.setVisibility(View.VISIBLE);
+            redo.setVisibility(View.VISIBLE);
+            boundary.setVisibility(View.VISIBLE);
+            confirmpicture.setVisibility(View.VISIBLE);
+            retakepicture.setVisibility(View.VISIBLE);
 
-        //Making Gif appear
-        try{
-            InputStream inputStream = getAssets().open("countdown.gif");
-            byte [] bytes = IOUtils.toByteArray(inputStream);
-            gifImageViewGame.setBytes(bytes);
-            gifImageViewGame.startAnimation();
+            //Make sure right frame is selected
+            photocoverman.setVisibility(View.VISIBLE);photocoverwoman.setVisibility(View.VISIBLE);
+            if(bitmojiToImplementOwnPhoto==0){photocoverman.setVisibility(View.INVISIBLE);}
+            else{photocoverwoman.setVisibility(View.INVISIBLE);}
+
+            //Start photo activity
+            photoGallery = (ImageView) findViewById(R.id.photogallery);
+            photoGalleryBitmoji = (ImageView) findViewById(R.id.photogallerybitmoji);
+            checkGalleryOpen=1;
+            GetImageFromGallery();
         }
-        catch (IOException ex)
-        {
+
+        //Else start game by making Gif appear
+        else{startGameWithGIF();}
+    }
+
+    //########################################################################
+    //Import photo from external storage and crop it to the right dimensions
+    //Source: https://www.android-examples.com/android-image-cropping-example-tutorial-pick-gallery-camera/
+    //Source: https://www.youtube.com/watch?v=rYzkv_KuZo4
+    public void GetImageFromGallery(){
+
+        GalIntent = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        startActivityForResult(Intent.createChooser(GalIntent, "Select Image From Gallery"), 2);
+
+    }
+
+    //React upon intent activities
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 0 && resultCode == RESULT_OK) {
+            ImageCropFunction();
         }
+
+        else if (requestCode == 2) {
+            if (data != null) {
+                uri = data.getData();
+                ImageCropFunction();
+            }
+        }
+        else if (requestCode == 1) {
+
+            if (data != null) {
+                Bundle bundle = data.getExtras();
+                Bitmap bitmap = bundle.getParcelable("data");
+                photoGallery.setImageBitmap(bitmap);
+                photoGalleryBitmoji.setImageBitmap(bitmap);
+            }
+        }
+    }
+
+    //Crop image to wanted dimensions
+    public void ImageCropFunction() {
+        // Image Crop Code
+        try {
+            CropIntent = new Intent("com.android.camera.action.CROP");
+            CropIntent.setDataAndType(uri, "image/*");
+            CropIntent.putExtra("crop", "true");
+            CropIntent.putExtra("outputX", 170);
+            CropIntent.putExtra("outputY", 230);
+            CropIntent.putExtra("aspectX", 3);
+            CropIntent.putExtra("aspectY", 4);
+            CropIntent.putExtra("scaleUpIfNeeded", true);
+            CropIntent.putExtra("return-data", true);
+            startActivityForResult(CropIntent, 1);
+        } catch (ActivityNotFoundException e) {
+        }
+    }
+    //Stop camera activity
+    //##############################################################
+
+    public void startGameWithGIF(){
+        //Make rollin' from bitmoji possible
+        motion=true;
+        checkGalleryOpen=0;
+        //Show number 3
+        three.setVisibility(View.VISIBLE);
+        //Show number 2
+        waitFunction(1000,7);
+        //Show number 1
+        waitFunction(2000,8);
+        //Show start
+        waitFunction(3000,9);
 
         //Stop countdown, start game
-        waitFunction(5000,5);
-        //waitFunctionStart();
+        waitFunction(4000,5);
 
         //Make sure the different falling objects not come into the game all at the same time
         //waitFunctionCake2();
-        waitFunction(9500,2);
-        waitFunction(17730,3);
-        waitFunction(25450,4);
+        waitFunction(8500,2);
+        waitFunction(16730,3);
+        waitFunction(24450,4);
     }
-
 
     //A delay function introduced in the game
     public void waitFunction (int timeToWait, final int functionCall){
@@ -370,7 +451,6 @@ public class MainActivity extends Activity {
         //Waiting for countdown to end:
         //Source: https://developer.android.com/reference/android/os/CountDownTimer.html
         new CountDownTimer(timeToWait, 1000) {
-            //DELETE: Alleen om te checken
             public void onTick(long millisUntilFinished) {
             }
 
@@ -391,7 +471,17 @@ public class MainActivity extends Activity {
                         scoreTimer();
 
                         //Making Gif disappear
-                        gifImageViewGame.setVisibility(View.INVISIBLE);
+                        //gifImageViewGame.setVisibility(View.INVISIBLE);
+
+                        //Making countdown disappear
+                        start.setVisibility(View.INVISIBLE);
+
+                        //Check if bitmoji frame must be implemented
+                        if(bitmojiToImplement==2&&bitmojiToImplement==0){bitmoji3.setVisibility(View.VISIBLE);}
+                        if(bitmojiToImplement==2&&bitmojiToImplement==1){bitmoji4.setVisibility(View.VISIBLE);}
+
+                        //Make score bar visible
+                        waveLoadingView.setVisibility(View.VISIBLE);
 
                         //Making Pause option possible
                         pauseplay.setClickable(true);
@@ -415,9 +505,20 @@ public class MainActivity extends Activity {
                             vlekplu1.setVisibility(View.INVISIBLE);
                             vlekplu2.setVisibility(View.INVISIBLE);
                             //Let the falling objects influence the score again
-                            umbrellaFactor = 1;
-                        }
+                            umbrellaFactor = 1;}
                     }
+
+                    else if (functionCall == 7 && pauseOption != 1) {
+                        three.setVisibility(View.INVISIBLE);
+                        two.setVisibility(View.VISIBLE);}
+
+                    else if (functionCall == 8 && pauseOption != 1) {
+                        two.setVisibility(View.INVISIBLE);
+                        one.setVisibility(View.VISIBLE);}
+
+                    else if (functionCall == 9 && pauseOption != 1) {
+                        one.setVisibility(View.INVISIBLE);
+                        start.setVisibility(View.VISIBLE);}
                 }
             }
         }.start();
@@ -430,7 +531,7 @@ public class MainActivity extends Activity {
         }
         //Check if one is game over or not
         else {
-            //FIX --> Hier verwijzing einde game
+            //Stop runnables when game over
             endOfGame();
             //Make device vibrate when game over as feedback
             vibrate();
@@ -438,37 +539,27 @@ public class MainActivity extends Activity {
             goGameOver();
         }
 
-        //DELETE scoreLabel.setText(String.valueOf(score));
         //Make score bar change
         scoreVisual();
-        //HIER FIX VISUAL APPEARANCE
     }
 
     public void goGameOver(){
+       // waitFunction(2500,10);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 //MainActivity.this.startActivity(new Intent(MainActivity.this, GameOver.class));
                 //MainActivity.this.finish();
-                Intent intent = new Intent();
-                intent.putExtra("ScoreAtGameOver", timer.getText().toString());
-                intent.setClass(MainActivity.this, GameOver.class);
-                startActivity(intent);
+                if(onBackButtonDevice == false){
+                    Intent intent = new Intent();
+                    intent.putExtra("ScoreAtGameOver", timer.getText().toString());
+                    intent.setClass(MainActivity.this, GameOver.class);
+                    startActivity(intent);}
             }
         },2500);
     }
 
-
     public void scoreVisual(){
-       /*COLORFIX
-        //Check if color of Score Bar needs to change
-        if(updateScore==score){}
-        else{
-            System.out.print("CHECK SCORE VOOR VISUAL        ");
-            System.out.println(updateScore);
-            startColorAnimation(waveLoadingView);}
-        updateScore=score;
-        */
        //Update color score bar if color does not fit to score range
         int currentColor = waveLoadingView.getWaveColor();
         if (score>=600){
@@ -489,48 +580,27 @@ public class MainActivity extends Activity {
 
         //Make score not become larger than maximum score
         if (score>1000){
-            score =1000;
-        }
+            score =1000;}
+
         //Make score not become smaller than minimum score
         if (score<=0){
-            score =0;
-        }
-        System.out.print("CHECK SCORE VOOR VISUAL        ");
-        System.out.println(score);
+            score =0;}
 
         //Change the score bar to the right value
         waveLoadingView.setProgressValue(score/10);
-
     }
-
-    /*
-    COLORFIX
-    //Make color score bar change shortly when score changes as feedback
-    //Source: https://www.youtube.com/watch?v=bSgUn2rZiko
-    private void startColorAnimation(WaveLoadingView waveLoadingView){
-        int colorEnd = 0xFFCB3367;
-
-        ValueAnimator colorAnim = ObjectAnimator.ofInt(waveLoadingView,"WaveColor",colorStart,colorEnd);
-
-        colorAnim.setDuration(300);
-        colorAnim.setEvaluator(new ArgbEvaluator());
-        colorAnim.setRepeatCount(1);
-        colorAnim.setRepeatMode(ValueAnimator.REVERSE);
-        colorAnim.start();
-    }*/
 
     //Make color score bar change based on score
     //Source: https://www.youtube.com/watch?v=bSgUn2rZiko
     private void startColorAnimation(WaveLoadingView waveLoadingView,int startColor,int endColor){
         ValueAnimator colorAnim = ObjectAnimator.ofInt(waveLoadingView,"WaveColor",startColor,endColor);
-
         colorAnim.setDuration(300);
         colorAnim.setEvaluator(new ArgbEvaluator());
         colorAnim.setRepeatCount(1);
         colorAnim.start();
     }
 
-    //Make device vibratie for given time period
+    //Make device vibrate for given time period
     //Source: https://stackoverflow.com/questions/13950338/how-to-make-an-android-device-vibrate
     public void vibrate(){
         // Get instance of Vibrator from current Context
@@ -577,12 +647,7 @@ public class MainActivity extends Activity {
             if(soundValue==1){sound.playSpongeSound();}
             //Make umbrella and bitmoji clean from smudges
             smudgesCleanedBySponge();
-            System.out.println("GERAAKT Spons");
         }
-
-        System.out.print("scoreCatchingCakes");
-        System.out.println(score);
-
     }
 
     public void smudgesCleanedBySponge(){
@@ -658,7 +723,6 @@ public class MainActivity extends Activity {
                 ||
                 (v4_rect.intersect(v3_rect) || v4_rect.contains(v3_rect) || v3_rect.contains(v4_rect))
                 ){
-            System.out.println("GERAAKT Body");
             return  true;
         }
 
@@ -711,7 +775,6 @@ public class MainActivity extends Activity {
                 ||
                 (v4_rect.intersect(v3_rect) || v4_rect.contains(v3_rect) || v3_rect.contains(v4_rect))
                 ){
-            System.out.println("GERAAKT Umbrella");
             return  true;
         }
         else return false;
@@ -730,7 +793,7 @@ public class MainActivity extends Activity {
             cake1y +=(10*speedFactor)/3000;
             if (cake1y>screenHeight-150){
                 //Set interval
-                cake1y = -screenHeight+1700;
+                cake1y = -screenHeight+800;
                 cake1x = (int) Math.floor(Math.random()*(screenWidth - cake1.getWidth()));
             }
             cake1.setX(cake1x);
@@ -834,7 +897,7 @@ public class MainActivity extends Activity {
         public void run() {
             handlerScoreTimerDown.postDelayed(this, 1000);
             if (score<=0){
-                // NAAR END OF GAME
+                //Go to the end of the game
                 endOfGame();
                 //Make device vibrate when game over as feedback
                 vibrate();
@@ -844,8 +907,6 @@ public class MainActivity extends Activity {
             }
             else{
                 score-=(20+increasementDifficulty);
-                System.out.print("INCREASMENT  ");
-                System.out.println(increasementDifficulty);
             }
             scoreVisual();
         }
@@ -854,18 +915,6 @@ public class MainActivity extends Activity {
     public void scoreTimer(){
         handlerScoreTimerDown.postDelayed(runnableScoreTimer,0);
     }
-
-    /*
-    //Make runnables stop when back button device is pressed
-    //Let the game thereupon return to the Menu
-    //Source: https://stackoverflow.com/questions/5312334/how-to-handle-back-button-in-activity
-    public void onBackPressed() {
-        score=0;
-        endOfGame();
-        Intent intent = new Intent(this,
-                MainMenu.class);
-        startActivity(intent);
-    }*/
 
     //Stop all runnables when game is over to prevent overload
     //Source: https://stackoverflow.com/questions/18671067/how-to-stop-handler-runnable
@@ -904,5 +953,33 @@ public class MainActivity extends Activity {
     }
 
 }
+
+    public void retake(View view) {
+        GetImageFromGallery();
+    }
+
+    public void confirm(View view) {
+        //Set UI elements for check photo to invisible
+        covergame.setVisibility(View.INVISIBLE);
+        photocoverman.setVisibility(View.INVISIBLE);
+        photocoverwoman.setVisibility(View.INVISIBLE);
+        framebuttonpicture.setVisibility(View.INVISIBLE);
+        confirm.setVisibility(View.INVISIBLE);
+        redo.setVisibility(View.INVISIBLE);
+        boundary.setVisibility(View.INVISIBLE);
+        confirmpicture.setVisibility(View.INVISIBLE);
+        retakepicture.setVisibility(View.INVISIBLE);
+        photoGallery.setVisibility(View.INVISIBLE);
+
+        //Make the photo visible behind the bitmoji to move along with it
+        photoGalleryBitmoji.setVisibility(View.VISIBLE);
+
+        //Make right bitmoji visible
+        if(bitmojiToImplementOwnPhoto==0){bitmoji3.setVisibility(View.VISIBLE);}
+        else{bitmoji4.setVisibility(View.VISIBLE);}
+
+        //Start game
+        startGameWithGIF();
+    }
 }
 

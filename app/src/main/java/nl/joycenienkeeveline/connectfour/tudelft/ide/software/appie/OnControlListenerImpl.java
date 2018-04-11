@@ -2,8 +2,6 @@
 //Source: Workshop Four in a row Software
 package nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie;
 
-//KIJKEN NAAR COMMENTS EN SYSTEMOUT
-
 import android.widget.ImageView;
 
 /**
@@ -28,11 +26,12 @@ public class OnControlListenerImpl implements SensorControlListener.OnControlLis
     public void onRoll(float x){
 
         if (mainActivity.getMotion()) {
-            System.out.println("Rollin' babeee jaaaa");
             sensorX=sensorX-x*ROLLING_SPEED;
             ImageView bitmoji1=(ImageView)mainActivity.findViewById(R.id.bitmoji1);
             ImageView bitmoji2=(ImageView)mainActivity.findViewById(R.id.bitmoji2);
             ImageView bitmoji3=(ImageView)mainActivity.findViewById(R.id.bitmoji3);
+            ImageView bitmoji4=(ImageView)mainActivity.findViewById(R.id.bitmoji4);
+            ImageView photoGalleryBitmoji=(ImageView)mainActivity.findViewById(R.id.photogallerybitmoji);
             ImageView umbrellacovering=(ImageView)mainActivity.findViewById(R.id.bitmojiumbrella1);
             ImageView vlek1=(ImageView)mainActivity.findViewById(R.id.vlek1);
             ImageView vlek2=(ImageView)mainActivity.findViewById(R.id.vlek2);
@@ -49,13 +48,15 @@ public class OnControlListenerImpl implements SensorControlListener.OnControlLis
             bitmoji1.setX(sensorX);
             bitmoji2.setX(sensorX);
             bitmoji3.setX(sensorX);
+            bitmoji4.setX(sensorX);
+            photoGalleryBitmoji.setX(sensorX+bitmoji2.getWidth()/(4));
             vlek1.setX(sensorX);
             vlek2.setX(sensorX);
 
             //Make sure umbrella moves along on the right place, just like the cake smudges
-            umbrellacovering.setX(sensorX+bitmoji1.getWidth()/5);
-            vlekplu1.setX(sensorX+bitmoji1.getWidth()/5);
-            vlekplu2.setX(sensorX+bitmoji1.getWidth()/5);
+            umbrellacovering.setX(sensorX+bitmoji1.getWidth()/7);
+            vlekplu1.setX(sensorX+bitmoji1.getWidth()/7);
+            vlekplu2.setX(sensorX+bitmoji1.getWidth()/7);
 
             time=System.currentTimeMillis(); // reset the time
             moving=true;

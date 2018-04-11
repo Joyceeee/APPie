@@ -6,10 +6,18 @@
     Give app permission to vibrate
     Source: https://stackoverflow.com/questions/13950338/how-to-make-an-android-device-vibrate
 
+    Use Camera feature:
+    Source: https://www.youtube.com/watch?v=je9bdkdNQqg FIX
+    Source: https://inducesmile.com/android/android-camera2-api-example-tutorial/
+
     Preventing app from going in landscape mode
     Source: https://stackoverflow.com/questions/2730855/prevent-screen-rotation-on-android
     -->
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature android:name="android.hardware.camera2.full" />
 
     <!-- Give permission to access internet to reach the web server -->
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -22,7 +30,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,25 +39,37 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainMenu"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".MainMenu"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".SettingsPage"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".GameOver"
+        <activity
+            android:name=".SettingsPage"
             android:screenOrientation="portrait" />
-        <activity android:name=".HowToPlayPage"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".RankingPage"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ChooseBitmoji"
-            android:screenOrientation="portrait">
+        <activity
+            android:name=".GameOver"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".HowToPlayPage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RankingPage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ChooseBitmoji"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ChoiceFrameActivity"
+            android:screenOrientation="portrait" >
+
         </activity>
     </application>
 

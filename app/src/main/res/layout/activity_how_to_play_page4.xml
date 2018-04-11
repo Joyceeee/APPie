@@ -13,7 +13,7 @@
         android:contentDescription="@string/todo"
         android:gravity="center_vertical"
         android:scaleType="centerCrop"
-        android:src="@drawable/mooigrijsisnietlelijk" />
+        android:src="@drawable/background" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 android:contentDescription="@string/todo"
                 android:gravity="center_vertical"
                 android:scaleType="centerCrop"
-                android:src="@drawable/mooirozeisnietlelijk" />
+                android:src="@drawable/header" />
 
             <ImageView
                 android:layout_width="match_parent"
@@ -163,7 +163,7 @@
             android:layout_alignBottom="@+id/Pop1"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="120dp"
-            android:src="@drawable/midgetcupcake" />
+            android:src="@drawable/cake1" />
 
         <ImageView
             android:layout_width="35dp"
@@ -178,7 +178,7 @@
             android:layout_alignTop="@+id/balk2"
             android:layout_toStartOf="@id/circle4"
             android:layout_marginTop="40dp"
-            android:src="@drawable/midgetcupcake" />
+            android:src="@drawable/cake1" />
 
         <ImageView
             android:id="@+id/howtoNextPage4"
@@ -189,6 +189,16 @@
             android:layout_marginBottom="5dp"
             android:onClick="howtoNextPage4"
             android:src="@drawable/nextbutton" />
+
+        <ImageView
+            android:id="@+id/howtoPreviousPage4"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="5dp"
+            android:onClick="howtoPreviousPage4"
+            android:src="@drawable/backbutton" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -21,7 +21,7 @@ public class HttpRequest extends AsyncTask<String, Void, String> {
     /**
      * URL of the web server (change to your own server).
      */
-    private static final String SERVER_URL = "http://145.94.146.72:8081";
+    private static final String SERVER_URL = "http://145.94.181.231:8081";
 
     /**
      * Handle the connection with the server in the background.

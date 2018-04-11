@@ -1,14 +1,8 @@
 package nl.joycenienkeeveline.connectfour.tudelft.ide.software.appie;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.media.Image;
-import android.opengl.Visibility;
-import android.provider.ContactsContract;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -45,9 +39,7 @@ public class SettingsPage extends Activity {
     @Override
     public void onBackPressed(){
         super.onBackPressed();
-
-        Intent intent = new Intent(this,
-                MainMenu.class);
+        Intent intent = new Intent(this, MainMenu.class);
         startActivity(intent);
     }
 
@@ -158,12 +150,6 @@ public class SettingsPage extends Activity {
     public void soundON(View view) {
         soundValue = 1;
         visibilityImagesSoundON();
-
-        /*DELETE
-        //Get color from resources
-        //SOURCE: https://stackoverflow.com/questions/5271387/get-color-int-from-color-resource
-        soundON.setBackgroundColor(getResources().getColor(R.color.colorSecondary));
-        soundOFF.setBackgroundColor(getResources().getColor(R.color.colorPrimary));*/
     }
 
     public void soundOFF(View view) {
