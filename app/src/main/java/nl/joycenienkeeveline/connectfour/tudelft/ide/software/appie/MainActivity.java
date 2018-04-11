@@ -541,7 +541,7 @@ public class MainActivity extends Activity {
 
         //Make score bar change
         scoreVisual();
-    }
+    }   
 
     public void goGameOver(){
        // waitFunction(2500,10);
