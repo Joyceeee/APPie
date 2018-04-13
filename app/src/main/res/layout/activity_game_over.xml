@@ -152,6 +152,7 @@
             android:id="@+id/savebtn"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:visibility="visible"
             android:layout_alignBottom="@+id/namePlayer"
             android:layout_alignEnd="@+id/taptochange"
             android:layout_marginBottom="4dp"

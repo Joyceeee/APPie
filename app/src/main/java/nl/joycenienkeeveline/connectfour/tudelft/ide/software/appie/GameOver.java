@@ -8,6 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.AutoCompleteTextView;
 import org.json.JSONArray;
@@ -167,9 +168,12 @@ public class GameOver extends Activity {
      * When the 'Save' button is clicked, create players,
      * then save the game.
      *
-     *
+     *ca
      */
     public void onClickSave(View view) {
+        ImageView saveTrans= findViewById(R.id.savebtn);
+        saveTrans.setVisibility(View.GONE);
+
         String playerName = namePlayer.getText().toString();
         String scorePlayer = score.getText().toString();
 
