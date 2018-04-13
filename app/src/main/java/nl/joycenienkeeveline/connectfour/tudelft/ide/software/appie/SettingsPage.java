@@ -157,6 +157,11 @@ public class SettingsPage extends Activity {
         visibilityImagesSoundOFF();
     }
 
+    public void soundChange(View view) {
+        if (soundValue == 1){soundOFF(soundOFF);}
+        else{soundON(soundON);}
+    }
+
     public void advanced1(View view) {
         advancedValue = 1;
         visibilityLeft();
@@ -189,4 +194,5 @@ public class SettingsPage extends Activity {
         ed.putInt("advanced", advancedValue);
         ed.apply();
     }
+
 }

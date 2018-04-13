@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Point;
-import android.graphics.Rect;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.net.Uri;
@@ -26,7 +25,6 @@ import android.widget.Button;
 import android.view.*;
 import android.os.Handler;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -74,16 +72,17 @@ public class MainActivity extends Activity {
     private Button pauseplay;
     private SparkButton playpauseButton;
 
+    //Get class for collision detection
+    private CollisionDetection collisionDetection=new CollisionDetection();
+
     //Initialise UI elements countdown
-    //private GifImageView gifImageViewGame;
     private ImageView one;
     private ImageView two;
     private ImageView three;
     private ImageView start;
 
-    //Initialise elements to be able to import photos from gallery
-    Uri uri;
-    Intent GalIntent, CropIntent ;
+    //Get the images from Gallery
+    private ImageFromGallery imageFromGallery=new ImageFromGallery(this);
 
     //Initialising size screen
     public int screenWidth;
@@ -112,7 +111,6 @@ public class MainActivity extends Activity {
     private int score = 1000;
     private int umbrellaFactor = 1;
     WaveLoadingView waveLoadingView;
-    int updateScore=0;
 
     //Set colors score bar
     int colorScore5 = 0xFFFF4081;
@@ -355,69 +353,18 @@ public class MainActivity extends Activity {
             photoGallery = (ImageView) findViewById(R.id.photogallery);
             photoGalleryBitmoji = (ImageView) findViewById(R.id.photogallerybitmoji);
             checkGalleryOpen=1;
-            GetImageFromGallery();
+            imageFromGallery.GetImageFromGallery();
         }
 
         //Else start game by making Gif appear
         else{startGameWithGIF();}
     }
 
-    //########################################################################
-    //Import photo from external storage and crop it to the right dimensions
-    //Source: https://www.android-examples.com/android-image-cropping-example-tutorial-pick-gallery-camera/
-    //Source: https://www.youtube.com/watch?v=rYzkv_KuZo4
-    public void GetImageFromGallery(){
-
-        GalIntent = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-        startActivityForResult(Intent.createChooser(GalIntent, "Select Image From Gallery"), 2);
-
-    }
-
-    //React upon intent activities
+    //React upon intent activities from the class ImageFromGallery
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 0 && resultCode == RESULT_OK) {
-            ImageCropFunction();
-        }
-
-        else if (requestCode == 2) {
-            if (data != null) {
-                uri = data.getData();
-                ImageCropFunction();
-            }
-        }
-        else if (requestCode == 1) {
-
-            if (data != null) {
-                Bundle bundle = data.getExtras();
-                Bitmap bitmap = bundle.getParcelable("data");
-                photoGallery.setImageBitmap(bitmap);
-                photoGalleryBitmoji.setImageBitmap(bitmap);
-            }
-        }
+        imageFromGallery.reactionOnActivityResult(requestCode, resultCode, data);
     }
-
-    //Crop image to wanted dimensions
-    public void ImageCropFunction() {
-        // Image Crop Code
-        try {
-            CropIntent = new Intent("com.android.camera.action.CROP");
-            CropIntent.setDataAndType(uri, "image/*");
-            CropIntent.putExtra("crop", "true");
-            CropIntent.putExtra("outputX", 170);
-            CropIntent.putExtra("outputY", 230);
-            CropIntent.putExtra("aspectX", 3);
-            CropIntent.putExtra("aspectY", 4);
-            CropIntent.putExtra("scaleUpIfNeeded", true);
-            CropIntent.putExtra("return-data", true);
-            startActivityForResult(CropIntent, 1);
-        } catch (ActivityNotFoundException e) {
-        }
-    }
-    //Stop camera activity
-    //##############################################################
 
     public void startGameWithGIF(){
         //Make rollin' from bitmoji possible
@@ -444,10 +391,6 @@ public class MainActivity extends Activity {
 
     //A delay function introduced in the game
     public void waitFunction (int timeToWait, final int functionCall){
-        //Make fade in animation for timer in background
-        //Source:https://stackoverflow.com/questions/2597329/how-to-do-a-fadein-of-an-image-on-an-android-activity-screen
-        final Animation myFadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fadein);
-
         //Waiting for countdown to end:
         //Source: https://developer.android.com/reference/android/os/CountDownTimer.html
         new CountDownTimer(timeToWait, 1000) {
@@ -464,39 +407,8 @@ public class MainActivity extends Activity {
                     } else if (functionCall == 4 && pauseOption != 1) {
                         changePosUmbrella();
                     } else if (functionCall == 5 && pauseOption != 1) {
-                        //Starting falling objects
-                        changePosCake1();
-
-                        //Start score going down with time
-                        scoreTimer();
-
-                        //Making Gif disappear
-                        //gifImageViewGame.setVisibility(View.INVISIBLE);
-
-                        //Making countdown disappear
-                        start.setVisibility(View.INVISIBLE);
-
-                        //Check if bitmoji frame must be implemented
-                        if(bitmojiToImplement==2&&bitmojiToImplement==0){bitmoji3.setVisibility(View.VISIBLE);}
-                        if(bitmojiToImplement==2&&bitmojiToImplement==1){bitmoji4.setVisibility(View.VISIBLE);}
-
-                        //Make score bar visible
-                        waveLoadingView.setVisibility(View.VISIBLE);
-
-                        //Making Pause option possible
-                        pauseplay.setClickable(true);
-
-                        //Run timer
-                        //Source: http://en.proft.me/2017/11/18/how-create-count-timer-android/
-                        startTime = SystemClock.uptimeMillis();
-                        customHandler.postDelayed(updateTimerThread, 0);
-
-                        //Fade in time in background
-                        //Source: https://stackoverflow.com/questions/2597329/how-to-do-a-fadein-of-an-image-on-an-android-activity-screen
-                        timer.startAnimation(myFadeInAnimation);
-                        timer.setVisibility(View.VISIBLE);
+                        startTheGame();
                     }
-
                     //When the umbrella is caught, no falling object influences the score for 10 seconds
                     else if (functionCall == 6) {
                         //Let the umbrella over the bitmoji with its smudges disappear again when there is no pause
@@ -507,7 +419,6 @@ public class MainActivity extends Activity {
                             //Let the falling objects influence the score again
                             umbrellaFactor = 1;}
                     }
-
                     else if (functionCall == 7 && pauseOption != 1) {
                         three.setVisibility(View.INVISIBLE);
                         two.setVisibility(View.VISIBLE);}
@@ -522,6 +433,41 @@ public class MainActivity extends Activity {
                 }
             }
         }.start();
+    }
+
+    public void startTheGame(){
+        //Make fade in animation for timer in background
+        //Source:https://stackoverflow.com/questions/2597329/how-to-do-a-fadein-of-an-image-on-an-android-activity-screen
+        final Animation myFadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fadein);
+
+        //Starting falling objects
+        changePosCake1();
+
+        //Start score going down with time
+        scoreTimer();
+
+        //Making countdown disappear
+        start.setVisibility(View.INVISIBLE);
+
+        //Check if bitmoji frame must be implemented
+        if(bitmojiToImplement==2&&bitmojiToImplement==0){bitmoji3.setVisibility(View.VISIBLE);}
+        if(bitmojiToImplement==2&&bitmojiToImplement==1){bitmoji4.setVisibility(View.VISIBLE);}
+
+        //Make score bar visible
+        waveLoadingView.setVisibility(View.VISIBLE);
+
+        //Making Pause option possible
+        pauseplay.setClickable(true);
+
+        //Run timer
+        //Source: http://en.proft.me/2017/11/18/how-create-count-timer-android/
+        startTime = SystemClock.uptimeMillis();
+        customHandler.postDelayed(updateTimerThread, 0);
+
+        //Fade in time in background
+        //Source: https://stackoverflow.com/questions/2597329/how-to-do-a-fadein-of-an-image-on-an-android-activity-screen
+        timer.startAnimation(myFadeInAnimation);
+        timer.setVisibility(View.VISIBLE);
     }
 
     //Calculating and displaying new score
@@ -541,7 +487,7 @@ public class MainActivity extends Activity {
 
         //Make score bar change
         scoreVisual();
-    }   
+    }
 
     public void goGameOver(){
        // waitFunction(2500,10);
@@ -612,7 +558,7 @@ public class MainActivity extends Activity {
 
     //Act upon collisions
     public void hitCheck(){
-        if(viewsOverlap(cake1,bitmoji1)){
+        if(collisionDetection.viewsOverlap(cake1,bitmoji1,umbrellacovering)){
             cake1y=screenHeight;
             Score(30);
             //Play sound when collision
@@ -621,7 +567,7 @@ public class MainActivity extends Activity {
             smudgesCausedByCakes();
         }
 
-        if(viewsOverlap(cake2,bitmoji1)){
+        if(collisionDetection.viewsOverlap(cake2,bitmoji1,umbrellacovering)){
             cake2y=screenHeight;
             Score(20);
             if(soundValue==1){sound.playCakeSound();}
@@ -629,7 +575,7 @@ public class MainActivity extends Activity {
             smudgesCausedByCakes();
         }
 
-        if(viewsOverlap(umbrella,bitmoji1)){
+        if(collisionDetection.viewsOverlap(umbrella,bitmoji1,umbrellacovering)){
             umbrellay=screenHeight;
             if(soundValue==1){sound.playUmbrellaSound();}
             if(umbrellacovering.getVisibility()==View.INVISIBLE) {
@@ -641,7 +587,7 @@ public class MainActivity extends Activity {
             }
         }
 
-        if(viewsOverlap(sponge,bitmoji1)){
+        if(collisionDetection.viewsOverlap(sponge,bitmoji1,umbrellacovering)){
             spongey=screenHeight;
             Score(-150);
             if(soundValue==1){sound.playSpongeSound();}
@@ -677,107 +623,6 @@ public class MainActivity extends Activity {
             else{vlek1.setVisibility(View.VISIBLE);
                 vlek2.setVisibility(View.INVISIBLE);}
         }
-    }
-
-    //Check for collision
-    //https://stackoverflow.com/questions/24600378/how-to-detect-when-a-imageview-is-in-collision-with-another-imageview
-    //https://laaptu.wordpress.com/2013/12/12/android-view-basics-coordinatesmarginpaddingdippx/
-   private boolean viewsOverlap(View v1, View v2) {
-       //Determine position of image v1 and set a rectangle around it
-       int[] v1_coords = new int[2];
-       v1.getLocationOnScreen(v1_coords);
-       int v1_w = v1.getWidth();
-       int v1_h = v1.getHeight();
-       Rect v1_rect;
-       Rect v4_rect;
-
-       //Check whether picture is umbrella (needs 2 rectangles because of dimensions)
-       if(v1==umbrella){
-           //Rectangle sheet
-           v1_rect = new Rect(v1_coords[0]+(v1_w/10), v1_coords[1]+(v1_h/10), v1_coords[0] + v1_w-(v1_w/10), v1_coords[1] +(v1_h/2)-(v1_h/10));
-           //Rectangle handle
-           v4_rect = new Rect(v1_coords[0]+(v1_w/10)+(v1_w/3), v1_coords[1]+(v1_h/10)+(v1_h/2), v1_coords[0] + v1_w-(v1_w/10)-(v1_w/3), v1_coords[1] + v1_h);
-       }
-       else{
-           v1_rect = new Rect(v1_coords[0]+(v1_w/10), v1_coords[1]+(v1_h/10), v1_coords[0] + v1_w-(v1_w/10), v1_coords[1] + v1_h-(v1_h/10));
-           v4_rect = new Rect(0, 0, 1, 1);
-       }
-
-       //Determine position of image v2 and set a rectangle around it
-        int[] v2_coords = new int[2];
-        v2.getLocationOnScreen(v2_coords);
-        int v2_w = v2.getWidth();
-        int v2_h = v2.getHeight();
-       //Separating the bitmoji into multiple rectangles for the head and the body by adjusting the boundaries
-        //Rectangle body
-        Rect v2_rect = new Rect(v2_coords[0], v2_coords[1]+(v2_h/7*6), v2_coords[0] + v2_w, v2_coords[1] + v2_h);
-        //Rectangle head
-        Rect v3_rect = new Rect(v2_coords[0]+(v2_w/3), v2_coords[1], v2_coords[0] + v2_w-(v2_w/3), v2_coords[1] + v2_h-(v2_h/7));
-
-        //Check whether collision
-        if ((v1_rect.intersect(v2_rect) || v1_rect.contains(v2_rect) || v2_rect.contains(v1_rect))
-                ||
-                (v1_rect.intersect(v3_rect) || v1_rect.contains(v3_rect) || v3_rect.contains(v1_rect))
-                ||
-                (v4_rect.intersect(v2_rect) || v4_rect.contains(v2_rect) || v2_rect.contains(v4_rect))
-                ||
-                (v4_rect.intersect(v3_rect) || v4_rect.contains(v3_rect) || v3_rect.contains(v4_rect))
-                ){
-            return  true;
-        }
-
-       //Check whether the umbrella covering is active or not to see if extra collision detection is needed
-       else if (umbrellacovering.getVisibility()==View.VISIBLE){
-           return (viewsOverlapUmbrella(v1));
-       }
-       else return false;
-    }
-
-    //Check for collision with umbrella and falling objects
-    private boolean viewsOverlapUmbrella(View v1) {
-        //Determine position of image v1 and set a rectangle around it
-        int[] v1_coords = new int[2];
-        v1.getLocationOnScreen(v1_coords);
-        int v1_w = v1.getWidth();
-        int v1_h = v1.getHeight();
-        Rect v1_rect;
-        Rect v4_rect;
-
-        //Check whether picture is umbrella (needs 2 rectangles because of dimensions)
-        if(v1==umbrella){
-            //Rectangle sheet
-            v1_rect = new Rect(v1_coords[0]+(v1_w/10), v1_coords[1]+(v1_h/10), v1_coords[0] + v1_w-(v1_w/10), v1_coords[1] +(v1_h/2)-(v1_h/10));
-            //Rectangle handle
-            v4_rect = new Rect(v1_coords[0]+(v1_w/10)+(v1_w/3), v1_coords[1]+(v1_h/10)+(v1_h/2), v1_coords[0] + v1_w-(v1_w/10)-(v1_w/3), v1_coords[1] + v1_h);
-        }
-        else{
-            v1_rect = new Rect(v1_coords[0]+(v1_w/10), v1_coords[1]+(v1_h/10), v1_coords[0] + v1_w-(v1_w/10), v1_coords[1] + v1_h-(v1_h/10));
-            v4_rect = new Rect(0, 0, 1, 1);
-        }
-
-        //Determine position of image v2 and set a rectangle around it
-        int[] v2_coords = new int[2];
-        umbrellacovering.getLocationOnScreen(v2_coords);
-        int v2_w = umbrellacovering.getWidth();
-        int v2_h = umbrellacovering.getHeight();
-        //Separating the umbrella into multiple rectangles as done already above
-        //Rectangle sheet
-        Rect v2_rect = new Rect(v2_coords[0]+(v2_w/10), v2_coords[1]+(v2_h/10), v2_coords[0] + v2_w-(v2_w/10), v2_coords[1] + v2_h-(v2_h/10)+(v2_h/2));
-        //Rectangle handle
-        Rect v3_rect = new Rect(v2_coords[0]+(v2_w/10)+(v2_w/3), v2_coords[1]+(v2_h/10)+(v2_h/2), v2_coords[0] + v2_w-(v2_w/10)-(v2_w/3), v2_coords[1] + v2_h);
-
-        //Check whether collision
-        if ((v1_rect.intersect(v2_rect) || v1_rect.contains(v2_rect) || v2_rect.contains(v1_rect))
-                ||
-                (v1_rect.intersect(v3_rect) || v1_rect.contains(v3_rect) || v3_rect.contains(v1_rect))
-                ||
-                (v4_rect.intersect(v2_rect) || v4_rect.contains(v2_rect) || v2_rect.contains(v4_rect))
-                ||
-                (v4_rect.intersect(v3_rect) || v4_rect.contains(v3_rect) || v3_rect.contains(v4_rect))
-                ){
-            return  true;
-        }
-        else return false;
     }
 
 
@@ -954,9 +799,7 @@ public class MainActivity extends Activity {
 
 }
 
-    public void retake(View view) {
-        GetImageFromGallery();
-    }
+    public void retake(View view) {imageFromGallery.GetImageFromGallery();}
 
     public void confirm(View view) {
         //Set UI elements for check photo to invisible
