@@ -94,10 +94,10 @@ function execSQL(sql, data) {
                 // Result from the database, resolve will trigger then()
                 resolve(result);
             });
-        });
+        }); 
     });
 }
- 
+
 // Start the web server
 app.listen(8081,'145.94.181.212');
 console.info('Running on http://localhost:8081');
